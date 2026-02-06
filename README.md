@@ -1,73 +1,160 @@
-# Welcome to your Lovable project
+# Spotix - Local Direct Mail Advertising
 
-## Project info
+A modern, minimalist website for Spotix - a shared direct mail service where local businesses reserve ad spots on postcards delivered to 10,000 homes.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+![Spotix Preview](./public/postcard-mockup.jpg)
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- **Modern Design**: Clean, minimalist aesthetic with vibrant orange accents
+- **Responsive**: Mobile-first design that works on all devices
+- **Fast Loading**: Optimized for performance with minimal dependencies
+- **SEO Ready**: Meta tags, structured content, and semantic HTML
+- **Smooth Interactions**: Smooth scrolling, hover effects, and form validation
+- **GitHub Pages Optimized**: Ready for easy deployment
 
-**Use Lovable**
+## Tech Stack
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+- **React 18** - Modern UI library
+- **TypeScript** - Type-safe development
+- **Vite** - Fast build tool and dev server
+- **Tailwind CSS** - Utility-first CSS framework
+- **shadcn/ui** - Beautiful, accessible UI components
+- **Lucide React** - Modern icon library
 
-Changes made via Lovable will be committed automatically to this repo.
+## Sections
 
-**Use your preferred IDE**
+1. **Navigation** - Sticky header with smooth scroll navigation
+2. **Hero** - Full-height section with postcard mockup and CTAs
+3. **Why We Started** - Story section with benefit bullets
+4. **Choose Your Spot** - Four spot size cards with visual representations
+5. **Benefits** - 8 benefit cards in a responsive grid
+6. **How It Works** - 4-step process timeline
+7. **FAQ** - Accordion-style frequently asked questions
+8. **Contact** - Lead capture form with spot selection
+9. **Footer** - Minimal footer with navigation links
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Getting Started
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Prerequisites
 
-Follow these steps:
+- Node.js 18+ 
+- npm or yarn
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Installation
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/spotix.git
+cd spotix
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
+2. Install dependencies:
+```bash
+npm install
+```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. Start the development server:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+4. Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Building for Production
 
-**Use GitHub Codespaces**
+```bash
+npm run build
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+The built files will be in the `dist/` directory.
 
-## What technologies are used for this project?
+## Deployment
 
-This project is built with:
+### GitHub Pages (Recommended)
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+1. Push your code to a GitHub repository
+2. Go to repository Settings > Pages
+3. Select "GitHub Actions" as the source
+4. The included workflow (`.github/workflows/deploy.yml`) will automatically deploy on pushes to main
 
-## How can I deploy this project?
+### Manual Deployment
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+1. Build the project: `npm run build`
+2. Copy the `dist/` folder contents to your web server
+3. Ensure your server is configured for single-page application routing
 
-## Can I connect a custom domain to my Lovable project?
+## Project Structure
 
-Yes, you can!
+```
+spotix/
+├── .github/
+│   └── workflows/
+│       └── deploy.yml          # GitHub Actions deployment
+├── public/
+│   └── postcard-mockup.jpg     # Hero image asset
+├── src/
+│   ├── sections/               # Page section components
+│   │   ├── Navigation.tsx
+│   │   ├── Hero.tsx
+│   │   ├── WhyWeStarted.tsx
+│   │   ├── ChooseYourSpot.tsx
+│   │   ├── Benefits.tsx
+│   │   ├── HowItWorks.tsx
+│   │   ├── FAQ.tsx
+│   │   ├── Contact.tsx
+│   │   └── Footer.tsx
+│   ├── components/ui/          # shadcn/ui components
+│   ├── App.tsx                 # Main app component
+│   ├── App.css                 # App-specific styles
+│   ├── index.css               # Global styles
+│   └── main.tsx                # Entry point
+├── index.html                  # HTML entry point
+├── tailwind.config.js          # Tailwind configuration
+├── vite.config.ts              # Vite configuration
+└── package.json
+```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## Customization
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+### Colors
+
+Edit `tailwind.config.js` to change the brand colors:
+
+```javascript
+colors: {
+  spotix: {
+    orange: "#F97316",      // Primary brand color
+    "orange-dark": "#EA580C",
+    charcoal: "#1F2937",    // Text color
+    cream: "#FFFBF7",       // Background accent
+  },
+}
+```
+
+### Content
+
+All content is in the section components under `src/sections/`. Edit the text directly in these files.
+
+### Images
+
+Replace `public/postcard-mockup.jpg` with your own hero image. Recommended size: 1200x900px or larger.
+
+## Browser Support
+
+- Chrome/Edge (latest)
+- Firefox (latest)
+- Safari (latest)
+- Mobile browsers (iOS Safari, Chrome Mobile)
+
+## License
+
+MIT License - feel free to use this template for your own projects.
+
+## Contact
+
+For questions or support, email hello@myspotix.com
+
+---
+
+Built with ❤️ for local businesses everywhere.
