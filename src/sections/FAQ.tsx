@@ -1,83 +1,147 @@
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion';
+import { useEffect, useRef, useState } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Plus, Minus } from 'lucide-react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const FAQ = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo('.faq-header',
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+
+      gsap.fromTo('.faq-item-container',
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.08,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '.faq-list',
+            start: 'top 75%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
+
   const faqs = [
     {
       question: 'What is Spotix exactly?',
-      answer:
-        'Spotix is a shared postcard that goes to 10,000 local homes each month. You buy a spot (ad space) on the card, and we mail it for you.',
+      answer: 'Spotix is a direct mail advertising service. We send postcards to 10,000 homes in the Toronto area every month. You buy a spot on the postcard, and we handle design, printing, and delivery through Canada Post.',
     },
     {
       question: 'How big are the spots?',
-      answer:
-        'We offer four sizes: Prime (4.25"x4.25"), Standard (4.25"x2.125"), Compact (2.125"x2.125"), and Mini (2.125"x1.0625").',
+      answer: 'We offer four sizes: Mini (2.125" x 1.0625"), Compact (2.125" x 2.125"), Standard (4.25" x 2.125"), and Prime (4.25" x 4.25"). The Standard spot is our most popular option—big enough for a strong message, priced right for small businesses.',
     },
     {
       question: 'Do I need to design the ad?',
-      answer:
-        'No. Send us your logo, photos, and text. We design your spot to look professional and clear.',
+      answer: 'Nope! Just send us your logo, any photos you want to include, and your offer text. Our design team will create a professional layout and send you a proof for approval before printing.',
     },
     {
       question: 'How often does it mail?',
-      answer:
-        'Monthly. Your spot goes out every month to the same 10,000 homes, or you can choose specific months.',
+      answer: 'Our postcards mail once a month to 10,000 homes. You can book a single month or reserve multiple months in advance. Spots fill up fast, so we recommend booking early.',
     },
     {
       question: 'Can I choose which neighborhoods?',
-      answer:
-        'Yes. We target specific zip codes or radius around your business. You pick the area.',
+      answer: 'Yes! We target specific postal codes in the Toronto area. When you book, let us know which area you want to reach, and we\'ll match it with our delivery routes.',
     },
     {
       question: 'How much does it cost?',
-      answer:
-        'Pricing depends on spot size. Mini spots start budget-friendly, Prime spots are premium. All include design and mailing to 10,000 homes.',
+      answer: 'Pricing depends on the spot size. Mini spots start at an affordable rate for small promos, while Prime spots offer maximum visibility. Contact us for current pricing—we\'ll find an option that fits your budget.',
     },
     {
       question: 'Is this better than Facebook ads?',
-      answer:
-        'For local reach, yes. Every home gets your spot. No algorithms hiding you. No ad fatigue. Physical mail sticks on fridges.',
+      answer: 'They work differently. Facebook ads can be great, but they depend on algorithms and people being online. Direct mail goes straight to the mailbox—no ad blockers, no scrolling past. Many of our clients use both!',
     },
     {
       question: 'Can I change my spot design?',
-      answer:
-        'Yes, you can update your spot monthly or keep it consistent. Changes are easy.',
+      answer: 'Absolutely! You can update your design each month. Many businesses keep their spot fresh with seasonal offers or new promotions. Just send us your updates before the monthly deadline.',
     },
   ];
 
-  return (
-    <section className="py-20 lg:py-28 bg-spotix-cream">
-      <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
-        <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-12 lg:mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-spotix-charcoal mb-4">
-              Common Questions
-            </h2>
-            <p className="text-gray-600 text-lg">
-              Simple answers to help you decide.
-            </p>
-          </div>
+  const toggleFAQ = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
 
-          <Accordion type="single" collapsible className="space-y-4">
-            {faqs.map((faq, index) => (
-              <AccordionItem
-                key={index}
-                value={`item-${index}`}
-                className="bg-white rounded-xl px-6 shadow-card border-none data-[state=open]:shadow-card-hover transition-shadow"
+  return (
+    <section
+      ref={sectionRef}
+      id="faq"
+      className="section-flowing bg-[#0a0a0f] py-20 lg:py-28"
+    >
+      <div className="container-narrow">
+        {/* Header */}
+        <div className="faq-header text-center mb-12">
+          <span className="mono text-[#f97316] mb-4 block">COMMON QUESTIONS</span>
+          <h2 className="text-display font-['Space_Grotesk'] font-bold text-[#f0f0f0] mb-6">
+            Simple Answers to<br />Help You Decide
+          </h2>
+          <p className="text-[#a0a0a0] text-lg">
+            Got questions? We&apos;ve got answers. If you don&apos;t see what you&apos;re looking for, 
+            just reach out.
+          </p>
+        </div>
+
+        {/* FAQ List */}
+        <div className="faq-list">
+          {faqs.map((faq, idx) => (
+            <div
+              key={idx}
+              className="faq-item-container faq-item"
+            >
+              <button
+                className="faq-trigger"
+                onClick={() => toggleFAQ(idx)}
               >
-                <AccordionTrigger className="text-left font-semibold text-spotix-charcoal hover:text-spotix-orange hover:no-underline py-5">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-gray-600 pb-5 leading-relaxed">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+                <span className="pr-8">{faq.question}</span>
+                <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-all ${
+                  openIndex === idx 
+                    ? 'bg-[#f97316] text-white' 
+                    : 'bg-[#1c1c24] text-[#a0a0a0]'
+                }`}>
+                  {openIndex === idx ? (
+                    <Minus className="w-4 h-4" />
+                  ) : (
+                    <Plus className="w-4 h-4" />
+                  )}
+                </div>
+              </button>
+              <div 
+                className="faq-content"
+                style={{ 
+                  height: openIndex === idx ? 'auto' : 0,
+                  opacity: openIndex === idx ? 1 : 0
+                }}
+              >
+                <p className="faq-answer">{faq.answer}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

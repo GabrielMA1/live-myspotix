@@ -1,93 +1,110 @@
-import { Mail } from 'lucide-react';
-
-// Clear Postcard Logo Icon
-const LogoIcon = ({ size = 20 }: { size?: number }) => (
-  <svg
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    {/* Outer postcard rectangle */}
-    <rect x="2" y="3" width="20" height="18" rx="2" stroke="white" strokeWidth="2" fill="none" />
-    {/* Vertical divider line */}
-    <line x1="9" y1="3" x2="9" y2="21" stroke="white" strokeWidth="1.5" />
-    {/* Stamp box in top right */}
-    <rect x="14" y="5" width="5" height="6" rx="1" stroke="white" strokeWidth="1.5" fill="none" strokeDasharray="2 1" />
-    {/* Address lines */}
-    <line x1="11" y1="14" x2="20" y2="14" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
-    <line x1="11" y1="17" x2="18" y2="17" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
-  </svg>
-);
+import { ArrowUpRight, Mail, Phone, MapPin } from 'lucide-react';
 
 const Footer = () => {
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const currentYear = new Date().getFullYear();
 
+  const footerLinks = {
+    company: [
+      { label: 'Spots', href: '#spots' },
+      { label: 'Benefits', href: '#benefits' },
+      { label: 'How It Works', href: '#how-it-works' },
+      { label: 'FAQ', href: '#faq' },
+    ],
+    family: [
+      { label: 'GMACOVEI', href: 'https://gmacovei.com' },
+      { label: 'RielArt', href: 'https://rielart.com' },
+    ],
+  };
+
   return (
-    <footer className="bg-[#1a1f2e] py-12 lg:py-16">
-      <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
-            {/* Logo & Tagline */}
-            <div className="text-center lg:text-left">
-              <button
-                onClick={() => scrollToSection('hero')}
-                className="flex items-center gap-2.5 group justify-center lg:justify-start"
-              >
-                <div className="w-9 h-9 bg-spotix-orange rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform">
-                  <LogoIcon size={20} />
-                </div>
-                <span className="text-white font-bold text-xl tracking-tight group-hover:text-spotix-orange transition-colors">
-                  Spotix
-                </span>
-              </button>
-              <p className="text-gray-400 mt-2 text-sm">
-                Real reach. Real simple.
-              </p>
-            </div>
-
-            {/* Navigation */}
-            <nav className="flex flex-wrap justify-center gap-6 lg:gap-8">
-              {[
-                { label: 'Home', id: 'hero' },
-                { label: 'Spots', id: 'spots' },
-                { label: 'Benefits', id: 'benefits' },
-                { label: 'Contact', id: 'contact' },
-              ].map((link) => (
-                <button
-                  key={link.id}
-                  onClick={() => scrollToSection(link.id)}
-                  className="text-gray-400 hover:text-white transition-colors text-sm"
-                >
-                  {link.label}
-                </button>
-              ))}
-            </nav>
-
-            {/* Contact */}
-            <a
-              href="mailto:hello@myspotix.com"
-              className="flex items-center gap-2 text-gray-400 hover:text-spotix-orange transition-colors"
-            >
-              <Mail size={16} />
-              <span className="text-sm">hello@myspotix.com</span>
+    <footer className="bg-[#0a0a0f] border-t border-[#2a2a35]">
+      <div className="container-wide py-16 lg:py-20">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-12">
+          {/* Brand */}
+          <div className="lg:col-span-2">
+            <a href="#" className="inline-block mb-4">
+              <span className="text-2xl font-['Space_Grotesk'] font-bold text-[#f0f0f0]">
+                Spotix
+              </span>
             </a>
+            <p className="text-[#a0a0a0] mb-6 max-w-sm">
+              Direct mail postcards to 10,000 Toronto homes. 
+              Simple, honest, effective local advertising.
+            </p>
+            
+            {/* Contact info */}
+            <div className="space-y-3">
+              <a href="mailto:hello@myspotix.com" className="flex items-center gap-3 text-sm text-[#a0a0a0] hover:text-[#f97316] transition-colors">
+                <Mail className="w-4 h-4" />
+                <span>hello@myspotix.com</span>
+              </a>
+              <a href="tel:+16479063547" className="flex items-center gap-3 text-sm text-[#a0a0a0] hover:text-[#f97316] transition-colors">
+                <Phone className="w-4 h-4" />
+                <span>647-906-3547</span>
+              </a>
+              <div className="flex items-center gap-3 text-sm text-[#a0a0a0]">
+                <MapPin className="w-4 h-4" />
+                <span>Ontario, Canada</span>
+              </div>
+            </div>
           </div>
 
-          {/* Divider */}
-          <div className="border-t border-gray-800 mt-8 pt-8">
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-gray-500 text-sm">
-              <p>&copy; {currentYear} Spotix. All rights reserved.</p>
-              <p>Made for local businesses everywhere.</p>
-            </div>
+          {/* Company */}
+          <div>
+            <h4 className="mono text-[#f0f0f0] mb-4">Company</h4>
+            <ul className="space-y-3">
+              {footerLinks.company.map((link, idx) => (
+                <li key={idx}>
+                  <a
+                    href={link.href}
+                    className="text-[#a0a0a0] hover:text-[#f97316] transition-colors text-sm"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Family */}
+          <div>
+            <h4 className="mono text-[#f0f0f0] mb-4">Family</h4>
+            <ul className="space-y-3">
+              {footerLinks.family.map((link, idx) => (
+                <li key={idx}>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#a0a0a0] hover:text-[#f97316] transition-colors text-sm inline-flex items-center gap-1"
+                  >
+                    {link.label}
+                    <ArrowUpRight className="w-3 h-3" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom bar */}
+        <div className="pt-8 border-t border-[#2a2a35] flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-sm text-[#a0a0a0]">
+            © {currentYear} Spotix. All rights reserved.
+          </p>
+          <div className="flex items-center gap-6">
+            <span className="text-xs text-[#a0a0a0]">
+              Part of the{' '}
+              <a 
+                href="https://gmacovei.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-[#f97316] hover:underline"
+              >
+                Gabriel Macovei
+              </a>{' '}
+              family
+            </span>
           </div>
         </div>
       </div>

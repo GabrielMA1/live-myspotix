@@ -1,107 +1,137 @@
-import { MousePointer, Upload, Printer, Home } from 'lucide-react';
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { MousePointer, Send, Palette, Truck } from 'lucide-react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const HowItWorks = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo('.how-header',
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+
+      gsap.fromTo('.step-item',
+        { opacity: 0, x: -40 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.7,
+          stagger: 0.15,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '.steps-container',
+            start: 'top 75%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
+
   const steps = [
     {
       number: '01',
       icon: MousePointer,
       title: 'Pick Your Spot',
-      description: 'Choose the size that fits your budget and message',
+      description: 'Choose the size that fits your budget and message. From Mini to Prime, we have options for every business.',
     },
     {
       number: '02',
-      icon: Upload,
+      icon: Send,
       title: 'Send Your Content',
-      description: 'Give us your logo, photos, and offer text',
+      description: 'Give us your logo, photos, and offer text. Not sure what to say? We\'ll help you craft the perfect message.',
     },
     {
       number: '03',
-      icon: Printer,
+      icon: Palette,
       title: 'We Design & Print',
-      description: 'We arrange your spot professionally on the postcard',
+      description: 'We arrange your spot professionally on the postcard. You\'ll see a proof before anything goes to print.',
     },
     {
       number: '04',
-      icon: Home,
+      icon: Truck,
       title: 'Reach 10,000 Homes',
-      description: 'Your spot mails to local households monthly',
+      description: 'Your spot mails to local households monthly. Sit back and watch the calls and visits come in.',
     },
   ];
 
   return (
-    <section id="how-it-works" className="py-20 lg:py-28 bg-white">
-      <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12 lg:mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-spotix-charcoal mb-4">
-              How Spotix Works
-            </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Four simple steps to get your business in 10,000 mailboxes.
-            </p>
-          </div>
+    <section
+      ref={sectionRef}
+      id="how-it-works"
+      className="section-flowing bg-[#0a0a0f] py-20 lg:py-28"
+    >
+      <div className="container-wide">
+        {/* Header */}
+        <div className="how-header text-center mb-16">
+          <span className="mono text-[#f97316] mb-4 block">HOW IT WORKS</span>
+          <h2 className="text-display font-['Space_Grotesk'] font-bold text-[#f0f0f0] mb-6">
+            Four Simple Steps to<br />Get Your Spot
+          </h2>
+          <p className="text-[#a0a0a0] text-lg max-w-2xl mx-auto">
+            We made it easy. No complicated setup, no tech skills needed. 
+            Just pick, send, and we handle the rest.
+          </p>
+        </div>
 
-          {/* Desktop Timeline */}
-          <div className="hidden lg:block">
-            <div className="relative">
-              {/* Connection Line */}
-              <div className="absolute top-24 left-0 right-0 h-1 bg-gradient-to-r from-spotix-orange/20 via-spotix-orange to-spotix-orange/20 rounded-full"></div>
-              
-              <div className="grid grid-cols-4 gap-8">
-                {steps.map((step, index) => {
-                  const Icon = step.icon;
-                  return (
-                    <div key={index} className="relative text-center">
-                      {/* Step Number */}
-                      <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-8 bg-spotix-orange text-white rounded-full flex items-center justify-center text-sm font-bold z-10">
+        {/* Steps */}
+        <div className="steps-container max-w-3xl mx-auto">
+          <div className="relative">
+            {/* Timeline line */}
+            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#f97316] via-[#fbbf24] to-transparent hidden md:block" />
+
+            <div className="space-y-8">
+              {steps.map((step, idx) => (
+                <div
+                  key={idx}
+                  className="step-item relative flex gap-6 md:gap-10"
+                >
+                  {/* Number circle */}
+                  <div className="relative z-10 flex-shrink-0">
+                    <div className="w-16 h-16 rounded-2xl bg-[#1c1c24] border border-[#2a2a35] flex items-center justify-center animate-pulse-glow-orange">
+                      <span className="text-xl font-['Space_Grotesk'] font-bold text-[#f97316]">
                         {step.number}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="card-dark flex-1 p-6 lg:p-8">
+                    <div className="flex items-start gap-4 mb-3">
+                      <div className="w-10 h-10 rounded-xl bg-[#f97316]/10 flex items-center justify-center flex-shrink-0">
+                        <step.icon className="w-5 h-5 text-[#f97316]" />
                       </div>
-                      
-                      {/* Icon Circle */}
-                      <div className="w-20 h-20 bg-white border-4 border-spotix-orange/20 rounded-full flex items-center justify-center mx-auto mb-6 mt-8 shadow-lg hover:border-spotix-orange hover:scale-110 transition-all duration-300">
-                        <Icon size={28} className="text-spotix-orange" />
-                      </div>
-                      
-                      {/* Content */}
-                      <h3 className="text-xl font-bold text-spotix-charcoal mb-2">
+                      <h3 className="text-xl font-['Space_Grotesk'] font-bold text-[#f0f0f0]">
                         {step.title}
                       </h3>
-                      <p className="text-gray-500 text-sm leading-relaxed">
-                        {step.description}
-                      </p>
                     </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-
-          {/* Mobile/Tablet Cards */}
-          <div className="lg:hidden grid sm:grid-cols-2 gap-6">
-            {steps.map((step, index) => {
-              const Icon = step.icon;
-              return (
-                <div
-                  key={index}
-                  className="bg-spotix-cream rounded-2xl p-6 flex items-start gap-4"
-                >
-                  <div className="w-12 h-12 bg-spotix-orange rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Icon size={22} className="text-white" />
-                  </div>
-                  <div>
-                    <div className="text-spotix-orange font-bold text-sm mb-1">
-                      Step {step.number}
-                    </div>
-                    <h3 className="text-lg font-bold text-spotix-charcoal mb-1">
-                      {step.title}
-                    </h3>
-                    <p className="text-gray-500 text-sm">
+                    <p className="text-[#a0a0a0] leading-relaxed md:pl-14">
                       {step.description}
                     </p>
                   </div>
                 </div>
-              );
-            })}
+              ))}
+            </div>
           </div>
         </div>
       </div>

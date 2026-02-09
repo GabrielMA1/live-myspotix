@@ -1,255 +1,285 @@
-import { useState } from 'react';
-import { Mail, Phone, MapPin, Send, AlertCircle } from 'lucide-react';
-import { toast } from 'sonner';
+import { useEffect, useRef, useState } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Send, Check, Phone, Mail, MapPin, AlertCircle, Building, User } from 'lucide-react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Contact = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState({
     businessName: '',
-    yourName: '',
+    name: '',
     email: '',
     phone: '',
     spotInterest: '',
     targetArea: '',
     message: '',
   });
-
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
 
-  const handleSubmit = async (e: React.FormEvent) => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo('.contact-content',
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 75%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+
+      gsap.fromTo('.contact-form-field',
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          stagger: 0.06,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '.contact-form',
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
+    
     // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    toast.success('Thank you! We will contact you soon to discuss your spot.');
-    setFormData({
-      businessName: '',
-      yourName: '',
-      email: '',
-      phone: '',
-      spotInterest: '',
-      targetArea: '',
-      message: '',
-    });
-    setIsSubmitting(false);
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setSubmitted(true);
+      setFormData({
+        businessName: '',
+        name: '',
+        email: '',
+        phone: '',
+        spotInterest: '',
+        targetArea: '',
+        message: '',
+      });
+    }, 1500);
   };
+
+  const contactInfo = [
+    { icon: Mail, label: 'hello@myspotix.com', href: 'mailto:hello@myspotix.com' },
+    { icon: Phone, label: '647-906-3547', href: 'tel:+16479063547' },
+    { icon: MapPin, label: 'Ontario, Canada', href: '#' },
+  ];
 
   return (
     <section
+      ref={sectionRef}
       id="contact"
-      className="py-20 lg:py-28 bg-gradient-to-br from-spotix-orange to-spotix-orange-dark"
+      className="section-flowing bg-[#121218] py-20 lg:py-28"
     >
-      <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
-              Get Your Spot Now
+      <div className="container-wide">
+        <div className="contact-content grid lg:grid-cols-2 gap-12 lg:gap-16">
+          {/* Left - Info */}
+          <div>
+            <span className="mono text-[#f97316] mb-4 block">GET YOUR SPOT</span>
+            <h2 className="text-display font-['Space_Grotesk'] font-bold text-[#f0f0f0] mb-6">
+              Reserve Your Space on Next Month&apos;s Postcard
             </h2>
-            <p className="text-white/90 text-lg max-w-2xl mx-auto">
-              Reserve your space on next month&apos;s postcard. Limited spots available.
+            <p className="text-[#a0a0a0] text-lg mb-8">
+              Limited spots available each month. Fill out the form and we&apos;ll 
+              get back to you within 24 hours with pricing and availability.
             </p>
-          </div>
 
-          <div className="bg-white rounded-3xl p-8 lg:p-12 shadow-2xl">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid sm:grid-cols-2 gap-6">
-                <div>
-                  <label
-                    htmlFor="businessName"
-                    className="block text-sm font-medium text-gray-700 mb-2"
-                  >
-                    Business Name *
-                  </label>
-                  <input
-                    type="text"
-                    id="businessName"
-                    name="businessName"
-                    required
-                    value={formData.businessName}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-spotix-orange focus:ring-2 focus:ring-spotix-orange/20 outline-none transition-all"
-                    placeholder="Your business name"
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="yourName"
-                    className="block text-sm font-medium text-gray-700 mb-2"
-                  >
-                    Your Name *
-                  </label>
-                  <input
-                    type="text"
-                    id="yourName"
-                    name="yourName"
-                    required
-                    value={formData.yourName}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-spotix-orange focus:ring-2 focus:ring-spotix-orange/20 outline-none transition-all"
-                    placeholder="Your full name"
-                  />
-                </div>
-              </div>
-
-              <div className="grid sm:grid-cols-2 gap-6">
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-gray-700 mb-2"
-                  >
-                    Email *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-spotix-orange focus:ring-2 focus:ring-spotix-orange/20 outline-none transition-all"
-                    placeholder="you@business.com"
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="phone"
-                    className="block text-sm font-medium text-gray-700 mb-2"
-                  >
-                    Phone *
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    required
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-spotix-orange focus:ring-2 focus:ring-spotix-orange/20 outline-none transition-all"
-                    placeholder="(555) 123-4567"
-                  />
-                </div>
-              </div>
-
-              <div className="grid sm:grid-cols-2 gap-6">
-                <div>
-                  <label
-                    htmlFor="spot-interest"
-                    className="block text-sm font-medium text-gray-700 mb-2"
-                  >
-                    Spot Interest
-                  </label>
-                  <select
-                    id="spot-interest"
-                    name="spotInterest"
-                    value={formData.spotInterest}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-spotix-orange focus:ring-2 focus:ring-spotix-orange/20 outline-none transition-all bg-white"
-                  >
-                    <option value="">Select a spot size</option>
-                    <option value="Prime">Prime Spot (4.25&quot; x 4.25&quot;)</option>
-                    <option value="Standard">Standard Spot (4.25&quot; x 2.125&quot;)</option>
-                    <option value="Compact">Compact Spot (2.125&quot; x 2.125&quot;)</option>
-                    <option value="Mini">Mini Spot (2.125&quot; x 1.0625&quot;)</option>
-                  </select>
-                </div>
-                <div>
-                  <label
-                    htmlFor="targetArea"
-                    className="block text-sm font-medium text-gray-700 mb-2"
-                  >
-                    Target Area / Zip Code
-                  </label>
-                  <div className="relative">
-                    <MapPin
-                      size={18}
-                      className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
-                    />
-                    <input
-                      type="text"
-                      id="targetArea"
-                      name="targetArea"
-                      value={formData.targetArea}
-                      onChange={handleChange}
-                      className="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 focus:border-spotix-orange focus:ring-2 focus:ring-spotix-orange/20 outline-none transition-all"
-                      placeholder="90210 or neighborhood"
-                    />
+            {/* Contact info */}
+            <div className="space-y-4 mb-8">
+              {contactInfo.map((item, idx) => (
+                <a
+                  key={idx}
+                  href={item.href}
+                  className="flex items-center gap-4 group"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-[#1c1c24] border border-[#2a2a35] flex items-center justify-center group-hover:border-[#f97316]/40 transition-colors">
+                    <item.icon className="w-5 h-5 text-[#a0a0a0] group-hover:text-[#f97316] transition-colors" />
                   </div>
-                </div>
-              </div>
-
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium text-gray-700 mb-2"
-                >
-                  Message / Content Ideas
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={4}
-                  value={formData.message}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-spotix-orange focus:ring-2 focus:ring-spotix-orange/20 outline-none transition-all resize-none"
-                  placeholder="Tell us about your business and what you'd like to promote..."
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-spotix-orange text-white py-4 rounded-xl font-bold text-lg hover:bg-spotix-orange-dark transition-all shadow-lg shadow-spotix-orange/25 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-              >
-                {isSubmitting ? (
-                  <>
-                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                    Sending...
-                  </>
-                ) : (
-                  <>
-                    Reserve My Spot
-                    <Send size={18} />
-                  </>
-                )}
-              </button>
-            </form>
-
-            {/* Alternative Contact */}
-            <div className="mt-8 pt-8 border-t border-gray-100 text-center">
-              <p className="text-gray-600 mb-4">Or reach us directly:</p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                <a
-                  href="mailto:hello@myspotix.com"
-                  className="flex items-center gap-2 text-spotix-orange hover:text-spotix-orange-dark transition-colors"
-                >
-                  <Mail size={18} />
-                  <span className="font-medium">hello@myspotix.com</span>
+                  <span className="text-[#f0f0f0] group-hover:text-[#f97316] transition-colors">
+                    {item.label}
+                  </span>
                 </a>
-                <a
-                  href="tel:+15551234567"
-                  className="flex items-center gap-2 text-spotix-orange hover:text-spotix-orange-dark transition-colors"
-                >
-                  <Phone size={18} />
-                  <span className="font-medium">(555) 123-4567</span>
-                </a>
-              </div>
+              ))}
+            </div>
+
+            {/* Trust note */}
+            <div className="flex items-start gap-3 p-4 rounded-xl bg-[#f97316]/5 border border-[#f97316]/20">
+              <AlertCircle className="w-5 h-5 text-[#f97316] flex-shrink-0 mt-0.5" />
+              <p className="text-sm text-[#a0a0a0]">
+                Spots fill monthly. Book early for best placement. 
+                No commitment required to inquire.
+              </p>
             </div>
           </div>
 
-          {/* Urgency Banner */}
-          <div className="mt-8 flex items-center justify-center gap-2 text-white/90">
-            <AlertCircle size={18} />
-            <span className="text-sm font-medium">
-              Spots fill monthly. Book early for best placement.
-            </span>
+          {/* Right - Form */}
+          <div className="contact-form">
+            <div className="card-dark p-8 lg:p-10">
+              {submitted ? (
+                <div className="text-center py-12">
+                  <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-[#f97316]/10 flex items-center justify-center">
+                    <Check className="w-7 h-7 text-[#f97316]" />
+                  </div>
+                  <h3 className="text-2xl font-['Space_Grotesk'] font-bold text-[#f0f0f0] mb-3">
+                    Message Sent!
+                  </h3>
+                  <p className="text-[#a0a0a0]">
+                    Thanks for reaching out. We&apos;ll get back to you within 24 hours 
+                    with pricing and availability.
+                  </p>
+                </div>
+              ) : (
+                <form 
+                  // FORMSPREE: Replace the action URL below with your Formspree endpoint
+                  // Example: action="https://formspree.io/f/YOUR_FORM_ID"
+                  action="https://formspree.io/f/YOUR_FORM_ID" 
+                  method="POST"
+                  onSubmit={handleSubmit} 
+                  className="space-y-5"
+                >
+                  <div className="contact-form-field">
+                    <label className="block text-sm text-[#a0a0a0] mb-2">Business Name *</label>
+                    <div className="relative">
+                      <Building className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#a0a0a0]" />
+                      <input
+                        type="text"
+                        name="businessName"
+                        required
+                        value={formData.businessName}
+                        onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
+                        placeholder="Your business name"
+                        className="pl-11"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid sm:grid-cols-2 gap-5">
+                    <div className="contact-form-field">
+                      <label className="block text-sm text-[#a0a0a0] mb-2">Your Name *</label>
+                      <div className="relative">
+                        <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#a0a0a0]" />
+                        <input
+                          type="text"
+                          name="name"
+                          required
+                          value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          placeholder="Your name"
+                          className="pl-11"
+                        />
+                      </div>
+                    </div>
+                    <div className="contact-form-field">
+                      <label className="block text-sm text-[#a0a0a0] mb-2">Phone *</label>
+                      <div className="relative">
+                        <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#a0a0a0]" />
+                        <input
+                          type="tel"
+                          name="phone"
+                          required
+                          value={formData.phone}
+                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                          placeholder="647-906-3547"
+                          className="pl-11"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="contact-form-field">
+                    <label className="block text-sm text-[#a0a0a0] mb-2">Email *</label>
+                    <div className="relative">
+                      <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#a0a0a0]" />
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        placeholder="your@email.com"
+                        className="pl-11"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid sm:grid-cols-2 gap-5">
+                    <div className="contact-form-field">
+                      <label className="block text-sm text-[#a0a0a0] mb-2">Spot Interest</label>
+                      <select
+                        name="spotInterest"
+                        value={formData.spotInterest}
+                        onChange={(e) => setFormData({ ...formData, spotInterest: e.target.value })}
+                      >
+                        <option value="">Select a spot size</option>
+                        <option value="prime">Prime Spot (4.25&quot; x 4.25&quot;)</option>
+                        <option value="standard">Standard Spot (4.25&quot; x 2.125&quot;)</option>
+                        <option value="compact">Compact Spot (2.125&quot; x 2.125&quot;)</option>
+                        <option value="mini">Mini Spot (2.125&quot; x 1.0625&quot;)</option>
+                      </select>
+                    </div>
+                    <div className="contact-form-field">
+                      <label className="block text-sm text-[#a0a0a0] mb-2">Target Area / Zip Code</label>
+                      <input
+                        type="text"
+                        name="targetArea"
+                        value={formData.targetArea}
+                        onChange={(e) => setFormData({ ...formData, targetArea: e.target.value })}
+                        placeholder="e.g., M5V 3A8"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="contact-form-field">
+                    <label className="block text-sm text-[#a0a0a0] mb-2">Message / Content Ideas</label>
+                    <textarea
+                      name="message"
+                      rows={3}
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      placeholder="Tell us about your business and what you'd like to promote..."
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="btn-primary w-full justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        Reserve My Spot
+                        <Send className="w-4 h-4" />
+                      </>
+                    )}
+                  </button>
+                </form>
+              )}
+            </div>
           </div>
         </div>
       </div>
