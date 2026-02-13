@@ -132,9 +132,8 @@ const CTA = () => {
                 </div>
               ) : (
                 <form 
-                  // FORMSPREE: Replace the action URL below with your Formspree endpoint
-                  // Example: action="https://formspree.io/f/YOUR_FORM_ID"
-                  action="https://formspree.io/f/YOUR_FORM_ID" 
+                  // Formspree endpoint for CTA form submissions
+                  action="https://formspree.io/f/xzdaelrp" 
                   method="POST"
                   onSubmit={handleSubmit} 
                   className="space-y-5"
