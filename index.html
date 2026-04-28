@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spotix - Direct Mail Advertising | Reach 10,000 Toronto Homes</title>
-    <meta name="description" content="Spotix helps businesses reach 10,000 local homes with direct mail advertising postcards. No tech skills needed. Just real mailboxes in neighborhoods you choose.">
+    <title>Spotix | Direct Mail Advertising to 10,000 Toronto Homes</title>
+    <meta name="description" content="Reach 10,000 Toronto households with guaranteed postcard delivery. No algorithms, no ad blockers. Local advertising that actually lands in mailboxes. Book your spot.">
+    <meta name="keywords" content="Toronto direct mail, local advertising Toronto, postcard marketing GTA, neighborhood advertising Toronto, direct mail advertising, Toronto homes, local business marketing">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -80,7 +81,6 @@
             font-family: 'Inter', sans-serif;
         }
         
-        /* Particle Animation */
         .particle {
             position: absolute;
             width: 3px;
@@ -108,7 +108,6 @@
             }
         }
         
-        /* Home pulse animation */
         .home-pulse {
             animation: home-pulse 2s ease-in-out infinite;
         }
@@ -123,6 +122,34 @@
                 box-shadow: 0 0 25px rgba(249, 115, 22, 0.6);
             }
         }
+
+        .sticky-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 60;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        .sticky-cta.visible {
+            transform: translateY(0);
+        }
+
+        .timeline-step::before {
+            content: '';
+            position: absolute;
+            top: 28px;
+            left: 50%;
+            width: calc(100% - 56px);
+            height: 2px;
+            background: linear-gradient(90deg, #F97316, #EA580C);
+            transform: translateX(calc(-50% + 28px));
+            z-index: 0;
+        }
+        .timeline-step:last-child::before {
+            display: none;
+        }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden">
@@ -132,7 +159,7 @@
         <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
             <div class="flex items-center justify-between h-16 md:h-20">
                 <!-- Logo -->
-                <a href="#" class="flex items-center space-x-2">
+                <a href="index.html" class="flex items-center space-x-2">
                     <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-spotix-orange to-spotix-orangeDark flex items-center justify-center">
                         <i data-lucide="mail" class="w-6 h-6 text-white"></i>
                     </div>
@@ -142,12 +169,12 @@
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#home" class="nav-link text-white hover:text-spotix-orange transition-colors">Home</a>
-                    <a href="#services" class="nav-link text-white hover:text-spotix-orange transition-colors">Services</a>
+                    <a href="#who-its-for" class="nav-link text-white hover:text-spotix-orange transition-colors">Who It's For</a>
+                    <a href="#pricing" class="nav-link text-white hover:text-spotix-orange transition-colors">Pricing</a>
                     <a href="#how-it-works" class="nav-link text-white hover:text-spotix-orange transition-colors">How It Works</a>
-                    <a href="#features" class="nav-link text-white hover:text-spotix-orange transition-colors">Features</a>
-                    <a href="#testimonials" class="nav-link text-white hover:text-spotix-orange transition-colors">Testimonials</a>
+                    <a href="#coverage" class="nav-link text-white hover:text-spotix-orange transition-colors">Coverage</a>
                     <a href="#faq" class="nav-link text-white hover:text-spotix-orange transition-colors">FAQ</a>
-                    <a href="#contact" class="btn-gradient px-6 py-2.5 rounded-full text-white font-semibold text-sm">Get Your Spot</a>
+                    <a href="#contact" class="btn-gradient px-6 py-2.5 rounded-full text-white font-semibold text-sm">Book Your Spot</a>
                 </div>
                 
                 <!-- Mobile Menu Button -->
@@ -161,12 +188,12 @@
         <div id="mobile-menu" class="hidden md:hidden glass">
             <div class="px-4 py-6 space-y-4">
                 <a href="#home" class="block text-white hover:text-spotix-orange py-2">Home</a>
-                <a href="#services" class="block text-white hover:text-spotix-orange py-2">Services</a>
+                <a href="#who-its-for" class="block text-white hover:text-spotix-orange py-2">Who It's For</a>
+                <a href="#pricing" class="block text-white hover:text-spotix-orange py-2">Pricing</a>
                 <a href="#how-it-works" class="block text-white hover:text-spotix-orange py-2">How It Works</a>
-                <a href="#features" class="block text-white hover:text-spotix-orange py-2">Features</a>
-                <a href="#testimonials" class="block text-white hover:text-spotix-orange py-2">Testimonials</a>
+                <a href="#coverage" class="block text-white hover:text-spotix-orange py-2">Coverage</a>
                 <a href="#faq" class="block text-white hover:text-spotix-orange py-2">FAQ</a>
-                <a href="#contact" class="block btn-gradient px-6 py-3 rounded-full text-white font-semibold text-center mt-4">Get Your Spot</a>
+                <a href="#contact" class="block btn-gradient px-6 py-3 rounded-full text-white font-semibold text-center mt-4">Book Your Spot</a>
             </div>
         </div>
     </nav>
@@ -308,8 +335,8 @@
         <!-- Hero Text - Centered Below 3D Visual -->
         <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
             <div class="inline-flex items-center space-x-2 bg-spotix-orange/10 border border-spotix-orange/30 rounded-full px-4 py-2 mb-6">
-                <i data-lucide="map-pin" class="w-4 h-4 text-spotix-orange"></i>
-                <span class="text-spotix-orange text-sm font-medium">Postcards to 10,000 Toronto Homes</span>
+                <i data-lucide="zap" class="w-4 h-4 text-spotix-orange"></i>
+                <span class="text-spotix-orange text-sm font-medium">The Anti-Algorithm Ad Channel</span>
             </div>
             
             <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight">
@@ -317,249 +344,637 @@
                 <span class="gradient-text glow-text">Spot Now</span>
             </h1>
             <p class="text-lg sm:text-xl md:text-2xl text-spotix-gray max-w-2xl mx-auto mb-8 leading-relaxed">
-                Reach <span class="text-white font-semibold">10,000 local homes</span> with your business offer. No tech skills. No ad algorithms. Just real mailboxes in neighborhoods you choose.
+                <span class="text-white font-semibold">10,000 Toronto mailboxes.</span> Guaranteed delivery. No tech, no targeting headaches, just real reach.
             </p>
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="#services" class="btn-gradient px-8 py-4 rounded-full text-white font-bold text-lg w-full sm:w-auto text-center">
-                    Choose Your Spot
+                <a href="#pricing" class="btn-gradient px-8 py-4 rounded-full text-white font-bold text-lg w-full sm:w-auto text-center">
+                    See Pricing
                 </a>
                 <a href="#how-it-works" class="px-8 py-4 rounded-full border border-spotix-gray/50 text-white font-semibold text-lg hover:bg-white/5 transition-colors w-full sm:w-auto text-center">
                     See How It Works
                 </a>
             </div>
             
-            <!-- Trust Badges -->
-            <div class="flex flex-wrap items-center justify-center gap-6 mt-10 text-spotix-gray text-sm">
-                <div class="flex items-center gap-2">
-                    <i data-lucide="map-pin" class="w-4 h-4 text-spotix-orange"></i>
-                    <span>Toronto Area</span>
+        </div>
+        
+    </section>
+
+    <!-- Trust Stats Bar -->
+    <section class="py-10 border-y border-spotix-gray/10 bg-spotix-darkgray/30">
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
+            <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div>
+                    <p class="text-3xl md:text-4xl font-black gradient-text mb-1">10,000+</p>
+                    <p class="text-spotix-gray text-sm">Homes Reached Monthly</p>
                 </div>
-                <div class="flex items-center gap-2">
-                    <i data-lucide="users" class="w-4 h-4 text-spotix-orange"></i>
-                    <span>10,000 Homes</span>
+                <div>
+                    <p class="text-3xl md:text-4xl font-black gradient-text mb-1">95%</p>
+                    <p class="text-spotix-gray text-sm">Delivery Rate (Canada Post)</p>
+                </div>
+                <div>
+                    <p class="text-3xl md:text-4xl font-black gradient-text mb-1">15+</p>
+                    <p class="text-spotix-gray text-sm">Toronto Neighborhoods</p>
+                </div>
+                <div>
+                    <p class="text-3xl md:text-4xl font-black gradient-text mb-1">0</p>
+                    <p class="text-spotix-gray text-sm">Ad Blockers, 100% Physical</p>
                 </div>
             </div>
         </div>
-        
-        <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <i data-lucide="chevron-down" class="w-8 h-8 text-spotix-orange/60"></i>
-        </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="py-20 md:py-32 relative">
+    <!-- Who It's For Section -->
+    <section id="who-its-for" class="py-20 md:py-32 relative">
         <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
             <div class="text-center mb-16">
                 <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-                    <span class="gradient-text">Choose Your Spot</span>
+                    <span class="gradient-text">Who It's For</span>
                 </h2>
                 <p class="text-spotix-gray text-lg max-w-2xl mx-auto">
-                    Four sizes to fit every budget and message. Pick the perfect spot for your business.
+                    If you serve Toronto locals, Spotix is built for you.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 max-w-5xl mx-auto">
+                <div class="card-hover bg-spotix-darkgray/50 rounded-xl p-6 border border-spotix-gray/20 text-center">
+                    <div class="w-12 h-12 mx-auto mb-3 rounded-lg bg-spotix-orange/10 flex items-center justify-center">
+                        <i data-lucide="utensils" class="w-6 h-6 text-spotix-orange"></i>
+                    </div>
+                    <h3 class="text-white font-semibold text-sm">Local Restaurants</h3>
+                </div>
+                
+                <div class="card-hover bg-spotix-darkgray/50 rounded-xl p-6 border border-spotix-gray/20 text-center">
+                    <div class="w-12 h-12 mx-auto mb-3 rounded-lg bg-spotix-orange/10 flex items-center justify-center">
+                        <i data-lucide="scissors" class="w-6 h-6 text-spotix-orange"></i>
+                    </div>
+                    <h3 class="text-white font-semibold text-sm">Salons & Spas</h3>
+                </div>
+                
+                <div class="card-hover bg-spotix-darkgray/50 rounded-xl p-6 border border-spotix-gray/20 text-center">
+                    <div class="w-12 h-12 mx-auto mb-3 rounded-lg bg-spotix-orange/10 flex items-center justify-center">
+                        <i data-lucide="stethoscope" class="w-6 h-6 text-spotix-orange"></i>
+                    </div>
+                    <h3 class="text-white font-semibold text-sm">Clinics</h3>
+                </div>
+                
+                <div class="card-hover bg-spotix-darkgray/50 rounded-xl p-6 border border-spotix-gray/20 text-center">
+                    <div class="w-12 h-12 mx-auto mb-3 rounded-lg bg-spotix-orange/10 flex items-center justify-center">
+                        <i data-lucide="home" class="w-6 h-6 text-spotix-orange"></i>
+                    </div>
+                    <h3 class="text-white font-semibold text-sm">Realtors</h3>
+                </div>
+                
+                <div class="card-hover bg-spotix-darkgray/50 rounded-xl p-6 border border-spotix-gray/20 text-center">
+                    <div class="w-12 h-12 mx-auto mb-3 rounded-lg bg-spotix-orange/10 flex items-center justify-center">
+                        <i data-lucide="wrench" class="w-6 h-6 text-spotix-orange"></i>
+                    </div>
+                    <h3 class="text-white font-semibold text-sm">Home Services</h3>
+                </div>
+                
+                <div class="card-hover bg-spotix-darkgray/50 rounded-xl p-6 border border-spotix-gray/20 text-center">
+                    <div class="w-12 h-12 mx-auto mb-3 rounded-lg bg-spotix-orange/10 flex items-center justify-center">
+                        <i data-lucide="store" class="w-6 h-6 text-spotix-orange"></i>
+                    </div>
+                    <h3 class="text-white font-semibold text-sm">Retail Shops</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 md:py-32 relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-spotix-orange/5 via-transparent to-spotix-orange/5"></div>
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12 relative">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+                    <span class="gradient-text">Clear Pricing</span>
+                </h2>
+                <p class="text-spotix-gray text-lg max-w-2xl mx-auto">
+                    No hidden fees. No surprises. Pick the tier that fits your goals.
                 </p>
             </div>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-                <!-- Mini -->
-                <a href="#contact" class="card-hover bg-spotix-darkgray/50 rounded-2xl p-6 border border-spotix-gray/20 relative overflow-hidden flex flex-col h-full group">
+                <!-- Solo Spot -->
+                <div class="card-hover bg-spotix-darkgray/50 rounded-2xl p-6 border border-spotix-gray/20 relative overflow-hidden flex flex-col h-full group">
                     <div class="flex-grow">
-                        <h3 class="text-2xl font-bold text-white mb-1">Mini</h3>
-                        <p class="text-spotix-orange text-sm mb-4">2.125" × 1.0625"</p>
+                        <h3 class="text-2xl font-bold text-white mb-1">Solo Spot</h3>
+                        <div class="flex items-baseline gap-1 mb-4">
+                            <span class="text-3xl font-black text-white">$299</span>
+                            <span class="text-spotix-gray text-sm">/month</span>
+                        </div>
                         <ul class="space-y-2 text-sm text-spotix-gray mb-6">
                             <li class="flex items-start">
                                 <i data-lucide="check" class="w-4 h-4 text-spotix-orange mr-2 mt-0.5 flex-shrink-0"></i>
-                                <span>Budget friendly</span>
+                                <span>1/8 page ad space</span>
                             </li>
                             <li class="flex items-start">
                                 <i data-lucide="check" class="w-4 h-4 text-spotix-orange mr-2 mt-0.5 flex-shrink-0"></i>
-                                <span>Perfect for short promos</span>
+                                <span>1 neighborhood targeting</span>
                             </li>
                             <li class="flex items-start">
                                 <i data-lucide="check" class="w-4 h-4 text-spotix-orange mr-2 mt-0.5 flex-shrink-0"></i>
-                                <span>Logo + offer</span>
+                                <span>Professional design included</span>
                             </li>
                             <li class="flex items-start">
                                 <i data-lucide="check" class="w-4 h-4 text-spotix-orange mr-2 mt-0.5 flex-shrink-0"></i>
-                                <span>Stay visible</span>
+                                <span>10,000 home delivery</span>
                             </li>
                         </ul>
                     </div>
-                    <div class="mt-auto">
-                        <div class="w-full h-16 bg-gradient-to-br from-spotix-orange/20 to-spotix-orangeDark/20 rounded-lg border border-spotix-orange/30 mb-4 flex items-center justify-center group-hover:border-spotix-orange/60 transition-colors">
-                            <span class="text-sm text-spotix-orange font-semibold">MINI</span>
-                        </div>
-                        <p class="text-spotix-orange font-semibold text-center">Lowest Cost</p>
-                    </div>
-                </a>
+                    <a href="#contact" class="block mt-auto w-full py-3 rounded-xl border border-spotix-orange/40 text-spotix-orange font-semibold text-center hover:bg-spotix-orange/10 transition-colors">
+                        Get Solo Spot
+                    </a>
+                </div>
                 
-                <!-- Compact -->
-                <a href="#contact" class="card-hover bg-spotix-darkgray/50 rounded-2xl p-6 border border-spotix-gray/20 relative overflow-hidden flex flex-col h-full group">
+                <!-- Duo Spot -->
+                <div class="card-hover bg-spotix-darkgray/50 rounded-2xl p-6 border border-spotix-gray/20 relative overflow-hidden flex flex-col h-full group">
                     <div class="flex-grow">
-                        <h3 class="text-2xl font-bold text-white mb-1">Compact</h3>
-                        <p class="text-spotix-orange text-sm mb-4">2.125" × 2.125"</p>
+                        <h3 class="text-2xl font-bold text-white mb-1">Duo Spot</h3>
+                        <div class="flex items-baseline gap-1 mb-4">
+                            <span class="text-3xl font-black text-white">$499</span>
+                            <span class="text-spotix-gray text-sm">/month</span>
+                        </div>
                         <ul class="space-y-2 text-sm text-spotix-gray mb-6">
                             <li class="flex items-start">
                                 <i data-lucide="check" class="w-4 h-4 text-spotix-orange mr-2 mt-0.5 flex-shrink-0"></i>
-                                <span>Simple and clear</span>
+                                <span>1/4 page ad space</span>
                             </li>
                             <li class="flex items-start">
                                 <i data-lucide="check" class="w-4 h-4 text-spotix-orange mr-2 mt-0.5 flex-shrink-0"></i>
-                                <span>Perfect for logos</span>
+                                <span>2 neighborhood targeting</span>
                             </li>
                             <li class="flex items-start">
                                 <i data-lucide="check" class="w-4 h-4 text-spotix-orange mr-2 mt-0.5 flex-shrink-0"></i>
-                                <span>Clean design</span>
+                                <span>Design + QR code included</span>
                             </li>
                             <li class="flex items-start">
                                 <i data-lucide="check" class="w-4 h-4 text-spotix-orange mr-2 mt-0.5 flex-shrink-0"></i>
-                                <span>Budget friendly</span>
+                                <span>10,000 home delivery</span>
                             </li>
                         </ul>
                     </div>
-                    <div class="mt-auto">
-                        <div class="w-full h-20 bg-gradient-to-br from-spotix-orange/20 to-spotix-orangeDark/20 rounded-lg border border-spotix-orange/30 mb-4 flex items-center justify-center group-hover:border-spotix-orange/60 transition-colors">
-                            <span class="text-sm text-spotix-orange font-semibold">COMPACT</span>
-                        </div>
-                        <p class="text-spotix-orange font-semibold text-center">Great Value</p>
-                    </div>
-                </a>
+                    <a href="#contact" class="block mt-auto w-full py-3 rounded-xl border border-spotix-orange/40 text-spotix-orange font-semibold text-center hover:bg-spotix-orange/10 transition-colors">
+                        Get Duo Spot
+                    </a>
+                </div>
                 
-                <!-- Standard - Most Popular -->
-                <a href="#contact" class="card-hover bg-spotix-darkgray/50 rounded-2xl p-6 border-2 border-spotix-orange/50 relative overflow-hidden glow-orange flex flex-col h-full group">
+                <!-- Full Spot - Most Popular -->
+                <div class="card-hover bg-spotix-darkgray/50 rounded-2xl p-6 border-2 border-spotix-orange/50 relative overflow-hidden glow-orange flex flex-col h-full group">
                     <div class="absolute top-4 right-4">
                         <span class="bg-gradient-to-r from-spotix-orange to-spotix-orangeDark text-white text-xs font-bold px-3 py-1 rounded-full">MOST POPULAR</span>
                     </div>
                     <div class="flex-grow">
-                        <h3 class="text-2xl font-bold text-white mb-1">Standard</h3>
-                        <p class="text-spotix-orange text-sm mb-4">4.25" × 2.125"</p>
+                        <h3 class="text-2xl font-bold text-white mb-1">Full Spot</h3>
+                        <div class="flex items-baseline gap-1 mb-4">
+                            <span class="text-3xl font-black text-white">$799</span>
+                            <span class="text-spotix-gray text-sm">/month</span>
+                        </div>
                         <ul class="space-y-2 text-sm text-spotix-gray mb-6">
                             <li class="flex items-start">
                                 <i data-lucide="check" class="w-4 h-4 text-spotix-orange mr-2 mt-0.5 flex-shrink-0"></i>
-                                <span>Balanced size</span>
+                                <span>1/2 page ad space</span>
                             </li>
                             <li class="flex items-start">
                                 <i data-lucide="check" class="w-4 h-4 text-spotix-orange mr-2 mt-0.5 flex-shrink-0"></i>
-                                <span>Great for most businesses</span>
+                                <span>Full coverage targeting</span>
                             </li>
                             <li class="flex items-start">
                                 <i data-lucide="check" class="w-4 h-4 text-spotix-orange mr-2 mt-0.5 flex-shrink-0"></i>
-                                <span>Good visibility</span>
+                                <span>Design + QR + phone tracking</span>
                             </li>
                             <li class="flex items-start">
                                 <i data-lucide="check" class="w-4 h-4 text-spotix-orange mr-2 mt-0.5 flex-shrink-0"></i>
-                                <span>Medium images</span>
+                                <span>10,000 home delivery</span>
                             </li>
                         </ul>
                     </div>
-                    <div class="mt-auto">
-                        <div class="w-full h-20 bg-gradient-to-br from-spotix-orange/30 to-spotix-orangeDark/30 rounded-lg border border-spotix-orange/40 mb-4 flex items-center justify-center group-hover:border-spotix-orange/70 transition-colors">
-                            <span class="text-sm text-spotix-orange font-semibold">STANDARD</span>
-                        </div>
-                        <p class="text-spotix-orange font-semibold text-center">Best Seller</p>
-                    </div>
-                </a>
+                    <a href="#contact" class="block mt-auto btn-gradient w-full py-3 rounded-xl text-white font-semibold text-center">
+                        Get Full Spot
+                    </a>
+                </div>
                 
-                <!-- Prime -->
-                <a href="#contact" class="card-hover bg-spotix-darkgray/50 rounded-2xl p-6 border border-spotix-gray/20 relative overflow-hidden flex flex-col h-full group">
+                <!-- Custom -->
+                <div class="card-hover bg-spotix-darkgray/50 rounded-2xl p-6 border border-spotix-gray/20 relative overflow-hidden flex flex-col h-full group">
                     <div class="flex-grow">
-                        <h3 class="text-2xl font-bold text-white mb-1">Prime</h3>
-                        <p class="text-spotix-orange text-sm mb-4">4.25" × 4.25"</p>
+                        <h3 class="text-2xl font-bold text-white mb-1">Custom</h3>
+                        <div class="flex items-baseline gap-1 mb-4">
+                            <span class="text-3xl font-black text-white">Contact</span>
+                        </div>
                         <ul class="space-y-2 text-sm text-spotix-gray mb-6">
                             <li class="flex items-start">
                                 <i data-lucide="check" class="w-4 h-4 text-spotix-orange mr-2 mt-0.5 flex-shrink-0"></i>
-                                <span>Maximum impact</span>
+                                <span>Full page ad space</span>
                             </li>
                             <li class="flex items-start">
                                 <i data-lucide="check" class="w-4 h-4 text-spotix-orange mr-2 mt-0.5 flex-shrink-0"></i>
-                                <span>Best for strong offers</span>
+                                <span>Multi-month campaigns</span>
                             </li>
                             <li class="flex items-start">
                                 <i data-lucide="check" class="w-4 h-4 text-spotix-orange mr-2 mt-0.5 flex-shrink-0"></i>
-                                <span>Full visibility</span>
+                                <span>Custom targeting options</span>
                             </li>
                             <li class="flex items-start">
                                 <i data-lucide="check" class="w-4 h-4 text-spotix-orange mr-2 mt-0.5 flex-shrink-0"></i>
-                                <span>Large images</span>
+                                <span>15% discount on subscriptions</span>
                             </li>
                         </ul>
                     </div>
-                    <div class="mt-auto">
-                        <div class="w-full h-28 bg-gradient-to-br from-spotix-orange/30 to-spotix-orangeDark/30 rounded-lg border border-spotix-orange/40 mb-4 flex items-center justify-center group-hover:border-spotix-orange/70 transition-colors">
-                            <span class="text-sm text-spotix-orange font-semibold">PRIME</span>
-                        </div>
-                        <p class="text-spotix-orange font-semibold text-center">Maximum Impact</p>
-                    </div>
-                </a>
+                    <a href="#contact" class="block mt-auto w-full py-3 rounded-xl border border-spotix-orange/40 text-spotix-orange font-semibold text-center hover:bg-spotix-orange/10 transition-colors">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Subscription Note -->
+            <div class="max-w-2xl mx-auto mt-10 text-center">
+                <p class="text-spotix-gray text-sm">
+                    <i data-lucide="percent" class="w-4 h-4 inline text-spotix-orange mr-1"></i>
+                    Monthly subscriptions available with <span class="text-white font-semibold">15% discount</span>. Lock in your spot and save.
+                </p>
             </div>
         </div>
     </section>
 
     <!-- How It Works Section -->
     <section id="how-it-works" class="py-20 md:py-32 relative">
-        <div class="absolute inset-0 bg-gradient-to-b from-spotix-orange/5 via-transparent to-spotix-orange/5"></div>
-        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12 relative">
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
             <div class="text-center mb-16">
                 <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
                     <span class="gradient-text">How It Works</span>
                 </h2>
                 <p class="text-spotix-gray text-lg max-w-2xl mx-auto">
-                    Four simple steps to reach thousands of local homes.
+                    Simple timeline with real dates. No guesswork.
                 </p>
             </div>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto relative">
                 <!-- Step 1 -->
-                <div class="bg-spotix-darkgray/50 rounded-2xl p-8 border border-spotix-gray/20 card-hover text-center h-full flex flex-col">
-                    <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-gradient-to-br from-spotix-orange to-spotix-orangeDark flex items-center justify-center text-xl font-bold text-white">1</div>
+                <div class="bg-spotix-darkgray/50 rounded-2xl p-8 border border-spotix-gray/20 card-hover text-center h-full flex flex-col relative timeline-step">
+                    <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-gradient-to-br from-spotix-orange to-spotix-orangeDark flex items-center justify-center text-xl font-bold text-white relative z-10">1</div>
                     <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-spotix-orange/10 flex items-center justify-center">
                         <i data-lucide="mouse-pointer-click" class="w-6 h-6 text-spotix-orange"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-white mb-3">Pick Your Spot</h3>
-                    <p class="text-spotix-gray text-sm flex-grow">Choose the size that fits your budget and message perfectly.</p>
+                    <h3 class="text-lg font-bold text-white mb-1">Book Your Spot</h3>
+                    <p class="text-spotix-orange text-sm font-semibold mb-3">By the 15th of each month</p>
+                    <p class="text-spotix-gray text-sm flex-grow">Pick your tier and reserve your space on next month's postcard.</p>
                 </div>
                 
                 <!-- Step 2 -->
-                <div class="bg-spotix-darkgray/50 rounded-2xl p-8 border border-spotix-gray/20 card-hover text-center h-full flex flex-col">
-                    <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-gradient-to-br from-spotix-orange to-spotix-orangeDark flex items-center justify-center text-xl font-bold text-white">2</div>
-                    <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-spotix-orange/10 flex items-center justify-center">
-                        <i data-lucide="upload" class="w-6 h-6 text-spotix-orange"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-3">Send Your Content</h3>
-                    <p class="text-spotix-gray text-sm flex-grow">Share your logo, photos, and offer text. We'll help craft your message.</p>
-                </div>
-                
-                <!-- Step 3 -->
-                <div class="bg-spotix-darkgray/50 rounded-2xl p-8 border border-spotix-gray/20 card-hover text-center h-full flex flex-col">
-                    <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-gradient-to-br from-spotix-orange to-spotix-orangeDark flex items-center justify-center text-xl font-bold text-white">3</div>
+                <div class="bg-spotix-darkgray/50 rounded-2xl p-8 border border-spotix-gray/20 card-hover text-center h-full flex flex-col relative timeline-step">
+                    <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-gradient-to-br from-spotix-orange to-spotix-orangeDark flex items-center justify-center text-xl font-bold text-white relative z-10">2</div>
                     <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-spotix-orange/10 flex items-center justify-center">
                         <i data-lucide="palette" class="w-6 h-6 text-spotix-orange"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-white mb-3">We Design & Print</h3>
-                    <p class="text-spotix-gray text-sm flex-grow">Professional arrangement with proof approval before printing.</p>
+                    <h3 class="text-lg font-bold text-white mb-1">Design Approved</h3>
+                    <p class="text-spotix-orange text-sm font-semibold mb-3">By the 20th of each month</p>
+                    <p class="text-spotix-gray text-sm flex-grow">Send your logo + offer. We design, you approve in 48 hours.</p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="bg-spotix-darkgray/50 rounded-2xl p-8 border border-spotix-gray/20 card-hover text-center h-full flex flex-col relative timeline-step">
+                    <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-gradient-to-br from-spotix-orange to-spotix-orangeDark flex items-center justify-center text-xl font-bold text-white relative z-10">3</div>
+                    <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-spotix-orange/10 flex items-center justify-center">
+                        <i data-lucide="printer" class="w-6 h-6 text-spotix-orange"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-1">Printed & Mailed</h3>
+                    <p class="text-spotix-orange text-sm font-semibold mb-3">By the 1st of next month</p>
+                    <p class="text-spotix-gray text-sm flex-grow">10,000 postcards hit mailboxes through Canada Post.</p>
                 </div>
                 
                 <!-- Step 4 -->
-                <div class="bg-spotix-darkgray/50 rounded-2xl p-8 border border-spotix-gray/20 card-hover text-center h-full flex flex-col">
-                    <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-gradient-to-br from-spotix-orange to-spotix-orangeDark flex items-center justify-center text-xl font-bold text-white">4</div>
+                <div class="bg-spotix-darkgray/50 rounded-2xl p-8 border border-spotix-gray/20 card-hover text-center h-full flex flex-col relative timeline-step">
+                    <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-gradient-to-br from-spotix-orange to-spotix-orangeDark flex items-center justify-center text-xl font-bold text-white relative z-10">4</div>
                     <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-spotix-orange/10 flex items-center justify-center">
-                        <i data-lucide="home" class="w-6 h-6 text-spotix-orange"></i>
+                        <i data-lucide="trending-up" class="w-6 h-6 text-spotix-orange"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-white mb-3">Reach 10,000 Homes</h3>
-                    <p class="text-spotix-gray text-sm flex-grow">Monthly mailing delivered. Watch calls and visits come in!</p>
+                    <h3 class="text-lg font-bold text-white mb-1">Track & Optimize</h3>
+                    <p class="text-spotix-orange text-sm font-semibold mb-3">Ongoing</p>
+                    <p class="text-spotix-gray text-sm flex-grow">Track responses via QR/phone. Optimize for next month.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
+    <!-- Coverage Map Section -->
+    <section id="coverage" class="py-20 md:py-32 relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-spotix-orange/5 via-transparent to-spotix-orange/5"></div>
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12 relative">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+                    <span class="gradient-text">Toronto Coverage</span>
+                </h2>
+                <p class="text-spotix-gray text-lg max-w-2xl mx-auto">
+                    We cover 15+ neighborhoods across the GTA. Target where your customers live.
+                </p>
+            </div>
+            
+            <div class="max-w-5xl mx-auto">
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+                    <div class="bg-spotix-darkgray/50 rounded-lg p-4 border border-spotix-gray/20 text-center">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-spotix-orange mx-auto mb-2"></i>
+                        <p class="text-white text-sm font-medium">Downtown Core</p>
+                    </div>
+                    <div class="bg-spotix-darkgray/50 rounded-lg p-4 border border-spotix-gray/20 text-center">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-spotix-orange mx-auto mb-2"></i>
+                        <p class="text-white text-sm font-medium">Midtown</p>
+                    </div>
+                    <div class="bg-spotix-darkgray/50 rounded-lg p-4 border border-spotix-gray/20 text-center">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-spotix-orange mx-auto mb-2"></i>
+                        <p class="text-white text-sm font-medium">North York</p>
+                    </div>
+                    <div class="bg-spotix-darkgray/50 rounded-lg p-4 border border-spotix-gray/20 text-center">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-spotix-orange mx-auto mb-2"></i>
+                        <p class="text-white text-sm font-medium">Scarborough</p>
+                    </div>
+                    <div class="bg-spotix-darkgray/50 rounded-lg p-4 border border-spotix-gray/20 text-center">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-spotix-orange mx-auto mb-2"></i>
+                        <p class="text-white text-sm font-medium">Etobicoke</p>
+                    </div>
+                    <div class="bg-spotix-darkgray/50 rounded-lg p-4 border border-spotix-gray/20 text-center">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-spotix-orange mx-auto mb-2"></i>
+                        <p class="text-white text-sm font-medium">York</p>
+                    </div>
+                    <div class="bg-spotix-darkgray/50 rounded-lg p-4 border border-spotix-gray/20 text-center">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-spotix-orange mx-auto mb-2"></i>
+                        <p class="text-white text-sm font-medium">East York</p>
+                    </div>
+                    <div class="bg-spotix-darkgray/50 rounded-lg p-4 border border-spotix-gray/20 text-center">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-spotix-orange mx-auto mb-2"></i>
+                        <p class="text-white text-sm font-medium">Liberty Village</p>
+                    </div>
+                    <div class="bg-spotix-darkgray/50 rounded-lg p-4 border border-spotix-gray/20 text-center">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-spotix-orange mx-auto mb-2"></i>
+                        <p class="text-white text-sm font-medium">The Beaches</p>
+                    </div>
+                    <div class="bg-spotix-darkgray/50 rounded-lg p-4 border border-spotix-gray/20 text-center">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-spotix-orange mx-auto mb-2"></i>
+                        <p class="text-white text-sm font-medium">Leslieville</p>
+                    </div>
+                    <div class="bg-spotix-darkgray/50 rounded-lg p-4 border border-spotix-gray/20 text-center">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-spotix-orange mx-auto mb-2"></i>
+                        <p class="text-white text-sm font-medium">High Park</p>
+                    </div>
+                    <div class="bg-spotix-darkgray/50 rounded-lg p-4 border border-spotix-gray/20 text-center">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-spotix-orange mx-auto mb-2"></i>
+                        <p class="text-white text-sm font-medium">Roncesvalles</p>
+                    </div>
+                    <div class="bg-spotix-darkgray/50 rounded-lg p-4 border border-spotix-gray/20 text-center">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-spotix-orange mx-auto mb-2"></i>
+                        <p class="text-white text-sm font-medium">Danforth</p>
+                    </div>
+                    <div class="bg-spotix-darkgray/50 rounded-lg p-4 border border-spotix-gray/20 text-center">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-spotix-orange mx-auto mb-2"></i>
+                        <p class="text-white text-sm font-medium">Willowdale</p>
+                    </div>
+                    <div class="bg-spotix-darkgray/50 rounded-lg p-4 border border-spotix-gray/20 text-center">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-spotix-orange mx-auto mb-2"></i>
+                        <p class="text-white text-sm font-medium">Thornhill</p>
+                    </div>
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <p class="text-spotix-gray text-sm">
+                        <i data-lucide="info" class="w-4 h-4 inline text-spotix-orange mr-1"></i>
+                        Don't see your neighborhood? <a href="#contact" class="text-spotix-orange hover:underline">Contact us</a> — we add new coverage areas regularly.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Digital Ads vs Spotix Comparison -->
+    <section id="comparison" class="py-20 md:py-32 relative">
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+                    <span class="gradient-text">Digital Ads vs. Spotix</span>
+                </h2>
+                <p class="text-spotix-gray text-lg max-w-2xl mx-auto">
+                    See why local businesses are switching from feeds to mailboxes.
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-0 rounded-2xl overflow-hidden border border-spotix-gray/20">
+                    <!-- Digital Ads Column -->
+                    <div class="bg-spotix-darkgray/50 p-8">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-10 h-10 rounded-lg bg-gray-700 flex items-center justify-center">
+                                <i data-lucide="monitor" class="w-5 h-5 text-gray-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-400">Digital Ads</h3>
+                        </div>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="x" class="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5"></i>
+                                <span class="text-gray-400">Blocked by ad blockers</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="x" class="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5"></i>
+                                <span class="text-gray-400">Algorithm changes kill reach overnight</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="x" class="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5"></i>
+                                <span class="text-gray-400">Competing with thousands of other ads</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="x" class="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5"></i>
+                                <span class="text-gray-400">Cost per impression keeps rising</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="x" class="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5"></i>
+                                <span class="text-gray-400">No tangible presence — scrolled past in 2 seconds</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Spotix Column -->
+                    <div class="bg-gradient-to-b from-spotix-orange/10 to-spotix-darkgray/50 p-8 border-l border-spotix-orange/20">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-spotix-orange to-spotix-orangeDark flex items-center justify-center">
+                                <i data-lucide="mail" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Spotix</h3>
+                        </div>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check" class="w-5 h-5 text-spotix-orange flex-shrink-0 mt-0.5"></i>
+                                <span class="text-white">Zero ad blockers — physical mail always lands</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check" class="w-5 h-5 text-spotix-orange flex-shrink-0 mt-0.5"></i>
+                                <span class="text-white">No algorithms — guaranteed delivery to 10,000 homes</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check" class="w-5 h-5 text-spotix-orange flex-shrink-0 mt-0.5"></i>
+                                <span class="text-white">Only 8 advertisers per card — minimal competition</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check" class="w-5 h-5 text-spotix-orange flex-shrink-0 mt-0.5"></i>
+                                <span class="text-white">Fixed cost — know exactly what you pay</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check" class="w-5 h-5 text-spotix-orange flex-shrink-0 mt-0.5"></i>
+                                <span class="text-white">Tangible postcard — held, read, kept on the fridge</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What to Expect / Timeline Section -->
+    <section id="what-to-expect" class="py-20 md:py-32 relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-spotix-orange/5 via-transparent to-spotix-orange/10"></div>
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12 relative">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+                    <span class="gradient-text">What to Expect</span>
+                </h2>
+                <p class="text-spotix-gray text-lg max-w-2xl mx-auto">
+                    A realistic timeline from booking to first calls.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                <!-- Week 1 -->
+                <div class="card-hover bg-spotix-darkgray/50 rounded-2xl p-8 border border-spotix-gray/20 relative">
+                    <div class="w-14 h-14 mb-4 rounded-full bg-gradient-to-br from-spotix-orange to-spotix-orangeDark flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">W1</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Book Your Spot</h3>
+                    <p class="text-spotix-gray text-sm leading-relaxed">You book your spot and send your content — logo, offer, and any photos.</p>
+                </div>
+                
+                <!-- Week 2 -->
+                <div class="card-hover bg-spotix-darkgray/50 rounded-2xl p-8 border border-spotix-gray/20 relative">
+                    <div class="w-14 h-14 mb-4 rounded-full bg-gradient-to-br from-spotix-orange to-spotix-orangeDark flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">W2</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Design & Approve</h3>
+                    <p class="text-spotix-gray text-sm leading-relaxed">We design, you approve, we print. Turnaround in 48 hours.</p>
+                </div>
+                
+                <!-- Week 3 -->
+                <div class="card-hover bg-spotix-darkgray/50 rounded-2xl p-8 border border-spotix-gray/20 relative">
+                    <div class="w-14 h-14 mb-4 rounded-full bg-gradient-to-br from-spotix-orange to-spotix-orangeDark flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">W3</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">10,000 Homes Hit</h3>
+                    <p class="text-spotix-gray text-sm leading-relaxed">Postcards delivered to mailboxes across your chosen neighborhoods.</p>
+                </div>
+                
+                <!-- Week 4 -->
+                <div class="card-hover bg-spotix-darkgray/50 rounded-2xl p-8 border border-spotix-gray/20 relative">
+                    <div class="w-14 h-14 mb-4 rounded-full bg-gradient-to-br from-spotix-orange to-spotix-orangeDark flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">W4</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Calls & Visits</h3>
+                    <p class="text-spotix-gray text-sm leading-relaxed">Phone rings. Door swings. You track exactly what worked via QR and unique number.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Last Month's Card Preview -->
+    <section class="py-20 md:py-32 relative">
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+                    <span class="gradient-text">Last Month's Card</span>
+                </h2>
+                <p class="text-spotix-gray text-lg max-w-2xl mx-auto">
+                    This is exactly what 10,000 Toronto homes received.
+                </p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-white rounded-xl p-6 md:p-10 shadow-2xl relative overflow-hidden">
+                    <!-- Postcard Mockup -->
+                    <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 md:p-8">
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <!-- Ad 1 -->
+                            <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
+                                <div class="w-8 h-8 rounded bg-orange-500 mb-2"></div>
+                                <div class="h-2 bg-gray-300 rounded mb-1 w-3/4"></div>
+                                <div class="h-2 bg-gray-200 rounded mb-1 w-full"></div>
+                                <div class="h-2 bg-gray-200 rounded w-1/2"></div>
+                            </div>
+                            <!-- Ad 2 -->
+                            <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
+                                <div class="w-8 h-8 rounded bg-blue-500 mb-2"></div>
+                                <div class="h-2 bg-gray-300 rounded mb-1 w-3/4"></div>
+                                <div class="h-2 bg-gray-200 rounded mb-1 w-full"></div>
+                            </div>
+                            <!-- Ad 3 -->
+                            <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
+                                <div class="w-8 h-8 rounded bg-green-500 mb-2"></div>
+                                <div class="h-2 bg-gray-300 rounded mb-1 w-3/4"></div>
+                                <div class="h-2 bg-gray-200 rounded mb-1 w-full"></div>
+                            </div>
+                            <!-- Ad 4 -->
+                            <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
+                                <div class="w-8 h-8 rounded bg-purple-500 mb-2"></div>
+                                <div class="h-2 bg-gray-300 rounded mb-1 w-3/4"></div>
+                                <div class="h-2 bg-gray-200 rounded mb-1 w-full"></div>
+                            </div>
+                            <!-- Ad 5 -->
+                            <div class="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
+                                <div class="w-8 h-8 rounded bg-red-500 mb-2"></div>
+                                <div class="h-2 bg-gray-300 rounded mb-1 w-3/4"></div>
+                                <div class="h-2 bg-gray-200 rounded mb-1 w-full"></div>
+                            </div>
+                            <!-- Ad 6 -->
+                            <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
+                                <div class="w-8 h-8 rounded bg-yellow-500 mb-2"></div>
+                                <div class="h-2 bg-gray-300 rounded mb-1 w-3/4"></div>
+                                <div class="h-2 bg-gray-200 rounded mb-1 w-full"></div>
+                            </div>
+                            <!-- Ad 7 -->
+                            <div class="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-3 border border-teal-200">
+                                <div class="w-8 h-8 rounded bg-teal-500 mb-2"></div>
+                                <div class="h-2 bg-gray-300 rounded mb-1 w-3/4"></div>
+                                <div class="h-2 bg-gray-200 rounded mb-1 w-full"></div>
+                            </div>
+                            <!-- Ad 8 -->
+                            <div class="bg-gradient-to-br from-pink-50 to-pink-100 rounded-lg p-3 border border-pink-200">
+                                <div class="w-8 h-8 rounded bg-pink-500 mb-2"></div>
+                                <div class="h-2 bg-gray-300 rounded mb-1 w-3/4"></div>
+                                <div class="h-2 bg-gray-200 rounded mb-1 w-full"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Footer branding -->
+                        <div class="mt-4 pt-4 border-t border-gray-200 flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <div class="w-6 h-6 rounded bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center">
+                                    <span class="text-white font-bold text-xs">S</span>
+                                </div>
+                                <span class="text-gray-500 text-sm font-medium">Spotix — Toronto's Neighborhood Postcard</span>
+                            </div>
+                            <span class="text-gray-400 text-xs">April 2026 Edition</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-center text-spotix-gray text-sm mt-4">
+                    <i data-lucide="info" class="w-4 h-4 inline text-spotix-orange mr-1"></i>
+                    Example layout only. Your ad space size depends on your chosen tier.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Spotix Section (4 cards) -->
     <section id="features" class="py-20 md:py-32 relative">
         <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
             <div class="text-center mb-16">
                 <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-                    <span class="gradient-text">Why Choose Spotix?</span>
+                    <span class="gradient-text">Why Spotix?</span>
                 </h2>
                 <p class="text-spotix-gray text-lg max-w-2xl mx-auto">
-                    Everything you need to reach local customers effectively.
+                    Four reasons local businesses choose us.
                 </p>
             </div>
             
@@ -567,10 +982,10 @@
                 <!-- Feature 1 -->
                 <div class="card-hover bg-spotix-darkgray/30 rounded-xl p-6 border border-spotix-gray/10">
                     <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-spotix-orange/20 to-spotix-orangeDark/20 flex items-center justify-center mb-4">
-                        <i data-lucide="target" class="w-6 h-6 text-spotix-orange"></i>
+                        <i data-lucide="shield-check" class="w-6 h-6 text-spotix-orange"></i>
                     </div>
                     <h3 class="text-lg font-bold text-white mb-2">Direct Reach</h3>
-                    <p class="text-spotix-gray text-sm">10,000 homes reached directly with no algorithms blocking your message.</p>
+                    <p class="text-spotix-gray text-sm">Can't be blocked, skipped, or scrolled past. Your message is physically in their hands.</p>
                 </div>
                 
                 <!-- Feature 2 -->
@@ -579,141 +994,25 @@
                         <i data-lucide="map-pin" class="w-6 h-6 text-spotix-orange"></i>
                     </div>
                     <h3 class="text-lg font-bold text-white mb-2">Local Focus</h3>
-                    <p class="text-spotix-gray text-sm">Target households near your business for maximum relevance.</p>
+                    <p class="text-spotix-gray text-sm">Target your neighbors — the people most likely to walk through your door.</p>
                 </div>
                 
                 <!-- Feature 3 -->
                 <div class="card-hover bg-spotix-darkgray/30 rounded-xl p-6 border border-spotix-gray/10">
                     <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-spotix-orange/20 to-spotix-orangeDark/20 flex items-center justify-center mb-4">
-                        <i data-lucide="eye" class="w-6 h-6 text-spotix-orange"></i>
+                        <i data-lucide="settings-2" class="w-6 h-6 text-spotix-orange"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Strong Visibility</h3>
-                    <p class="text-spotix-gray text-sm">Stays in front of families who check their mail daily.</p>
+                    <h3 class="text-lg font-bold text-white mb-2">Simple Setup</h3>
+                    <p class="text-spotix-gray text-sm">Send your logo + offer. We handle design, print, and delivery. Zero hassle.</p>
                 </div>
                 
                 <!-- Feature 4 -->
                 <div class="card-hover bg-spotix-darkgray/30 rounded-xl p-6 border border-spotix-gray/10">
                     <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-spotix-orange/20 to-spotix-orangeDark/20 flex items-center justify-center mb-4">
-                        <i data-lucide="settings-2" class="w-6 h-6 text-spotix-orange"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Simple Setup</h3>
-                    <p class="text-spotix-gray text-sm">Pick your spot, send content, and we handle the rest.</p>
-                </div>
-                
-                <!-- Feature 5 -->
-                <div class="card-hover bg-spotix-darkgray/30 rounded-xl p-6 border border-spotix-gray/10">
-                    <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-spotix-orange/20 to-spotix-orangeDark/20 flex items-center justify-center mb-4">
-                        <i data-lucide="tag" class="w-6 h-6 text-spotix-orange"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Clear Pricing</h3>
-                    <p class="text-spotix-gray text-sm">No hidden charges or surprise fees. What you see is what you pay.</p>
-                </div>
-                
-                <!-- Feature 6 -->
-                <div class="card-hover bg-spotix-darkgray/30 rounded-xl p-6 border border-spotix-gray/10">
-                    <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-spotix-orange/20 to-spotix-orangeDark/20 flex items-center justify-center mb-4">
-                        <i data-lucide="trending-up" class="w-6 h-6 text-spotix-orange"></i>
+                        <i data-lucide="bar-chart-3" class="w-6 h-6 text-spotix-orange"></i>
                     </div>
                     <h3 class="text-lg font-bold text-white mb-2">Real Results</h3>
-                    <p class="text-spotix-gray text-sm">Local ads bring calls, visits, and new customers to your door.</p>
-                </div>
-                
-                <!-- Feature 7 -->
-                <div class="card-hover bg-spotix-darkgray/30 rounded-xl p-6 border border-spotix-gray/10">
-                    <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-spotix-orange/20 to-spotix-orangeDark/20 flex items-center justify-center mb-4">
-                        <i data-lucide="award" class="w-6 h-6 text-spotix-orange"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Better Awareness</h3>
-                    <p class="text-spotix-gray text-sm">Month after month, build trust and recognition in your community.</p>
-                </div>
-                
-                <!-- Feature 8 -->
-                <div class="card-hover bg-spotix-darkgray/30 rounded-xl p-6 border border-spotix-gray/10">
-                    <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-spotix-orange/20 to-spotix-orangeDark/20 flex items-center justify-center mb-4">
-                        <i data-lucide="pen-tool" class="w-6 h-6 text-spotix-orange"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Easy Design Help</h3>
-                    <p class="text-spotix-gray text-sm">Professional layout help included. No design skills needed.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="py-20 md:py-32 relative">
-        <div class="absolute inset-0 bg-gradient-to-b from-spotix-orange/5 via-transparent to-spotix-orange/10"></div>
-        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12 relative">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-                    <span class="gradient-text">What Our Clients Say</span>
-                </h2>
-                <p class="text-spotix-gray text-lg max-w-2xl mx-auto">
-                    Real businesses, real results with Spotix.
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <!-- Testimonial 1 -->
-                <div class="card-hover bg-spotix-darkgray/50 rounded-2xl p-8 border border-spotix-gray/20 relative">
-                    <div class="absolute -top-4 left-8">
-                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-spotix-orange to-spotix-orangeDark flex items-center justify-center">
-                            <i data-lucide="quote" class="w-5 h-5 text-white"></i>
-                        </div>
-                    </div>
-                    <p class="text-white/90 mb-6 pt-4 leading-relaxed">
-                        "Honestly, I was skeptical about direct mail at first, but Spotix made it so easy. Within two weeks of our first mailing, we had people walking in saying they saw our postcard. It's been a game-changer for us."
-                    </p>
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-spotix-orange/30 to-spotix-orangeDark/30 flex items-center justify-center mr-4">
-                            <span class="text-spotix-orange font-bold">MR</span>
-                        </div>
-                        <div>
-                            <p class="text-white font-semibold">Mike Richardson</p>
-                            <p class="text-spotix-gray text-sm">Owner, Richardson's Hardware</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 2 -->
-                <div class="card-hover bg-spotix-darkgray/50 rounded-2xl p-8 border border-spotix-orange/30 glow-orange relative">
-                    <div class="absolute -top-4 left-8">
-                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-spotix-orange to-spotix-orangeDark flex items-center justify-center">
-                            <i data-lucide="quote" class="w-5 h-5 text-white"></i>
-                        </div>
-                    </div>
-                    <p class="text-white/90 mb-6 pt-4 leading-relaxed">
-                        "My friend recommended Spotix to me after she saw great results with her salon. I gave it a shot and wow - I'm getting calls from people in neighborhoods I never thought I could reach. Totally worth it!"
-                    </p>
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-spotix-orange/30 to-spotix-orangeDark/30 flex items-center justify-center mr-4">
-                            <span class="text-spotix-orange font-bold">JL</span>
-                        </div>
-                        <div>
-                            <p class="text-white font-semibold">Jennifer Liu</p>
-                            <p class="text-spotix-gray text-sm">Founder, Bloom Floral Studio</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 3 -->
-                <div class="card-hover bg-spotix-darkgray/50 rounded-2xl p-8 border border-spotix-gray/20 relative">
-                    <div class="absolute -top-4 left-8">
-                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-spotix-orange to-spotix-orangeDark flex items-center justify-center">
-                            <i data-lucide="quote" class="w-5 h-5 text-white"></i>
-                        </div>
-                    </div>
-                    <p class="text-white/90 mb-6 pt-4 leading-relaxed">
-                        "I've tried Facebook ads, Google ads, you name it. Nothing compares to having your business literally in someone's hands. The Spotix team handled everything - I just sent them my logo and they did the rest."
-                    </p>
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-spotix-orange/30 to-spotix-orangeDark/30 flex items-center justify-center mr-4">
-                            <span class="text-spotix-orange font-bold">DP</span>
-                        </div>
-                        <div>
-                            <p class="text-white font-semibold">David Patel</p>
-                            <p class="text-spotix-gray text-sm">Owner, Patel's Pizza</p>
-                        </div>
-                    </div>
+                    <p class="text-spotix-gray text-sm">Trackable via QR code and unique phone number. See exactly what works.</p>
                 </div>
             </div>
         </div>
@@ -727,7 +1026,7 @@
                     <span class="gradient-text">Frequently Asked Questions</span>
                 </h2>
                 <p class="text-spotix-gray text-lg max-w-2xl mx-auto">
-                    Everything you need to know about Spotix.
+                    Quick answers to common questions.
                 </p>
             </div>
             
@@ -735,88 +1034,44 @@
                 <!-- FAQ 1 -->
                 <div class="bg-spotix-darkgray/50 rounded-xl border border-spotix-gray/20 overflow-hidden">
                     <button class="accordion-btn w-full px-6 py-5 flex items-center justify-between text-left hover:bg-spotix-darkgray/70 transition-colors">
-                        <span class="text-white font-semibold pr-4">What is Spotix?</span>
+                        <span class="text-white font-semibold pr-4">Which neighborhoods can I target?</span>
                         <i data-lucide="chevron-down" class="w-5 h-5 text-spotix-orange flex-shrink-0 accordion-icon transition-transform"></i>
                     </button>
                     <div class="accordion-content px-6">
-                        <p class="text-spotix-gray pb-5">Spotix is a direct mail advertising service that sends postcards to 10,000 Toronto homes monthly. We help local businesses reach their target neighborhoods without dealing with digital ad algorithms.</p>
+                        <p class="text-spotix-gray pb-5">Any Toronto postal code area. We group by neighborhood for maximum relevance. Choose from Downtown Core, Midtown, North York, Scarborough, Etobicoke, and 10+ more areas. Don't see yours? Contact us — we're always expanding.</p>
                     </div>
                 </div>
                 
                 <!-- FAQ 2 -->
                 <div class="bg-spotix-darkgray/50 rounded-xl border border-spotix-gray/20 overflow-hidden">
                     <button class="accordion-btn w-full px-6 py-5 flex items-center justify-between text-left hover:bg-spotix-darkgray/70 transition-colors">
-                        <span class="text-white font-semibold pr-4">What sizes are available?</span>
+                        <span class="text-white font-semibold pr-4">What if I don't have a design?</span>
                         <i data-lucide="chevron-down" class="w-5 h-5 text-spotix-orange flex-shrink-0 accordion-icon transition-transform"></i>
                     </button>
                     <div class="accordion-content px-6">
-                        <p class="text-spotix-gray pb-5">We offer four sizes: Mini (2.125" × 1.0625"), Compact (2.125" × 2.125"), Standard (4.25" × 2.125"), and Prime (4.25" × 4.25"). Each size is designed to fit different budgets and messaging needs.</p>
+                        <p class="text-spotix-gray pb-5">Professional layout included with every tier. Just send your logo + offer, we handle the rest. You'll get a proof to approve before anything goes to print. No design skills needed.</p>
                     </div>
                 </div>
                 
                 <!-- FAQ 3 -->
                 <div class="bg-spotix-darkgray/50 rounded-xl border border-spotix-gray/20 overflow-hidden">
                     <button class="accordion-btn w-full px-6 py-5 flex items-center justify-between text-left hover:bg-spotix-darkgray/70 transition-colors">
-                        <span class="text-white font-semibold pr-4">Do I need design skills?</span>
+                        <span class="text-white font-semibold pr-4">How do I track results?</span>
                         <i data-lucide="chevron-down" class="w-5 h-5 text-spotix-orange flex-shrink-0 accordion-icon transition-transform"></i>
                     </button>
                     <div class="accordion-content px-6">
-                        <p class="text-spotix-gray pb-5">Not at all! Just send us your logo, photos, and text. Our professional design team will create a beautiful layout for your approval. We handle all the design work for you.</p>
+                        <p class="text-spotix-gray pb-5">Unique phone number or QR code on each postcard. You see exactly what works. Duo Spot and above include QR tracking. Full Spot adds a dedicated phone number for full attribution.</p>
                     </div>
                 </div>
                 
                 <!-- FAQ 4 -->
                 <div class="bg-spotix-darkgray/50 rounded-xl border border-spotix-gray/20 overflow-hidden">
                     <button class="accordion-btn w-full px-6 py-5 flex items-center justify-between text-left hover:bg-spotix-darkgray/70 transition-colors">
-                        <span class="text-white font-semibold pr-4">How often are postcards mailed?</span>
+                        <span class="text-white font-semibold pr-4">Can I mail more than once?</span>
                         <i data-lucide="chevron-down" class="w-5 h-5 text-spotix-orange flex-shrink-0 accordion-icon transition-transform"></i>
                     </button>
                     <div class="accordion-content px-6">
-                        <p class="text-spotix-gray pb-5">Postcards are mailed monthly to 10,000 homes. You can book a single month or multiple months in advance. Many businesses choose to advertise consistently to build brand recognition.</p>
-                    </div>
-                </div>
-                
-                <!-- FAQ 5 -->
-                <div class="bg-spotix-darkgray/50 rounded-xl border border-spotix-gray/20 overflow-hidden">
-                    <button class="accordion-btn w-full px-6 py-5 flex items-center justify-between text-left hover:bg-spotix-darkgray/70 transition-colors">
-                        <span class="text-white font-semibold pr-4">Can I target specific areas?</span>
-                        <i data-lucide="chevron-down" class="w-5 h-5 text-spotix-orange flex-shrink-0 accordion-icon transition-transform"></i>
-                    </button>
-                    <div class="accordion-content px-6">
-                        <p class="text-spotix-gray pb-5">Yes! You can target specific postal codes in Toronto. This allows you to focus on neighborhoods near your business or areas where your ideal customers live.</p>
-                    </div>
-                </div>
-                
-                <!-- FAQ 6 -->
-                <div class="bg-spotix-darkgray/50 rounded-xl border border-spotix-gray/20 overflow-hidden">
-                    <button class="accordion-btn w-full px-6 py-5 flex items-center justify-between text-left hover:bg-spotix-darkgray/70 transition-colors">
-                        <span class="text-white font-semibold pr-4">How much does it cost?</span>
-                        <i data-lucide="chevron-down" class="w-5 h-5 text-spotix-orange flex-shrink-0 accordion-icon transition-transform"></i>
-                    </button>
-                    <div class="accordion-content px-6">
-                        <p class="text-spotix-gray pb-5">Pricing depends on the spot size you choose. Contact us for current pricing and availability. We offer competitive rates with no hidden charges.</p>
-                    </div>
-                </div>
-                
-                <!-- FAQ 7 -->
-                <div class="bg-spotix-darkgray/50 rounded-xl border border-spotix-gray/20 overflow-hidden">
-                    <button class="accordion-btn w-full px-6 py-5 flex items-center justify-between text-left hover:bg-spotix-darkgray/70 transition-colors">
-                        <span class="text-white font-semibold pr-4">Is this better than Facebook ads?</span>
-                        <i data-lucide="chevron-down" class="w-5 h-5 text-spotix-orange flex-shrink-0 accordion-icon transition-transform"></i>
-                    </button>
-                    <div class="accordion-content px-6">
-                        <p class="text-spotix-gray pb-5">It's different! Direct mail goes straight to the mailbox with no ad blockers, no algorithms, and no competition for attention. Your message is physically in their hands. Many businesses find it complements their digital marketing perfectly.</p>
-                    </div>
-                </div>
-                
-                <!-- FAQ 8 -->
-                <div class="bg-spotix-darkgray/50 rounded-xl border border-spotix-gray/20 overflow-hidden">
-                    <button class="accordion-btn w-full px-6 py-5 flex items-center justify-between text-left hover:bg-spotix-darkgray/70 transition-colors">
-                        <span class="text-white font-semibold pr-4">Can I change my design monthly?</span>
-                        <i data-lucide="chevron-down" class="w-5 h-5 text-spotix-orange flex-shrink-0 accordion-icon transition-transform"></i>
-                    </button>
-                    <div class="accordion-content px-6">
-                        <p class="text-spotix-gray pb-5">Absolutely! You can update your design each month with seasonal offers, new promotions, or fresh messaging. Just send us your new content and we'll create an updated design.</p>
+                        <p class="text-spotix-gray pb-5">Yes — monthly subscriptions are available with a 15% discount. Lock in your spot and save. Many businesses see compounding results after 3+ months of consistent mailing.</p>
                     </div>
                 </div>
             </div>
@@ -833,7 +1088,13 @@
                         <span class="gradient-text">Get Your Spot</span>
                     </h2>
                     <p class="text-xl text-white font-semibold mb-2">Reserve Your Space on Next Month's Postcard</p>
-                    <p class="text-spotix-gray">Limited spots available each month. We'll get back to you within 24 hours with pricing and availability.</p>
+                    <p class="text-spotix-gray">Limited spots available each month. We'll get back to you within 24 hours.</p>
+                    
+                    <!-- Urgency -->
+                    <div class="mt-4 inline-flex items-center gap-2 bg-red-500/10 border border-red-500/30 rounded-full px-4 py-2">
+                        <i data-lucide="flame" class="w-4 h-4 text-red-400"></i>
+                        <span class="text-red-400 text-sm font-medium">Book by the 15th for next month's mailing — Only 8 spots per card</span>
+                    </div>
                 </div>
                 
                 <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
@@ -848,7 +1109,7 @@
                                         <i data-lucide="phone" class="w-5 h-5 text-spotix-orange"></i>
                                     </div>
                                     <div>
-                                        <p class="text-spotix-gray text-sm">Phone</p>
+                                        <p class="text-spotix-gray text-sm">Phone / Text</p>
                                         <p class="text-white font-medium">647-906-3547</p>
                                     </div>
                                 </div>
@@ -859,7 +1120,7 @@
                                     </div>
                                     <div>
                                         <p class="text-spotix-gray text-sm">Email</p>
-                                        <p class="text-white font-medium">info@spotix.com</p>
+                                        <p class="text-white font-medium">hello@myspotix.com</p>
                                     </div>
                                 </div>
                                 
@@ -885,18 +1146,21 @@
                             </div>
                         </div>
                         
+                        <!-- Calendly / Book a call -->
+                        <div class="bg-spotix-darkgray/50 rounded-2xl p-6 border border-spotix-orange/30">
+                            <h3 class="text-lg font-bold text-white mb-3">Prefer to Talk?</h3>
+                            <p class="text-spotix-gray text-sm mb-4">Book a 10-minute spot check. We'll review your goals and recommend the right tier.</p>
+                            <a href="#contact" onclick="alert('Calendly integration coming soon. Call or text 647-906-3547 to book now.')" class="btn-gradient block w-full py-3 rounded-xl text-white font-semibold text-center">
+                                Book a 10-Min Call
+                            </a>
+                        </div>
+                        
                         <!-- Social Links -->
                         <div class="bg-spotix-darkgray/50 rounded-2xl p-6 border border-spotix-gray/20">
                             <h3 class="text-lg font-bold text-white mb-4">Follow Us</h3>
                             <div class="flex gap-3">
-                                <a href="#" class="w-10 h-10 rounded-lg bg-spotix-orange/10 flex items-center justify-center text-spotix-gray hover:text-spotix-orange hover:bg-spotix-orange/20 transition-colors">
+                                <a href="https://linkedin.com" target="_blank" rel="noopener" class="w-10 h-10 rounded-lg bg-spotix-orange/10 flex items-center justify-center text-spotix-gray hover:text-spotix-orange hover:bg-spotix-orange/20 transition-colors" aria-label="LinkedIn">
                                     <i data-lucide="linkedin" class="w-5 h-5"></i>
-                                </a>
-                                <a href="#" class="w-10 h-10 rounded-lg bg-spotix-orange/10 flex items-center justify-center text-spotix-gray hover:text-spotix-orange hover:bg-spotix-orange/20 transition-colors">
-                                    <i data-lucide="instagram" class="w-5 h-5"></i>
-                                </a>
-                                <a href="#" class="w-10 h-10 rounded-lg bg-spotix-orange/10 flex items-center justify-center text-spotix-gray hover:text-spotix-orange hover:bg-spotix-orange/20 transition-colors">
-                                    <i data-lucide="facebook" class="w-5 h-5"></i>
                                 </a>
                             </div>
                         </div>
@@ -925,17 +1189,17 @@
                                     <div>
                                         <label class="block text-white font-medium mb-2 text-sm">Spot Size Interest</label>
                                         <select name="spot_size" class="form-input w-full px-4 py-3 rounded-xl text-white">
-                                            <option value="mini">Mini</option>
-                                            <option value="compact">Compact</option>
-                                            <option value="standard" selected>Standard (Most Popular)</option>
-                                            <option value="prime">Prime</option>
+                                            <option value="solo">Solo Spot — $299</option>
+                                            <option value="duo">Duo Spot — $499</option>
+                                            <option value="full" selected>Full Spot — $799 (Most Popular)</option>
+                                            <option value="custom">Custom — Contact Us</option>
                                         </select>
                                     </div>
                                 </div>
                                 
                                 <div>
                                     <label class="block text-white font-medium mb-2 text-sm">Your Message</label>
-                                    <textarea name="message" rows="4" class="form-input w-full px-4 py-3 rounded-xl text-white placeholder-spotix-gray/50 resize-none" placeholder="Tell us about your business and what you're looking for..."></textarea>
+                                    <textarea name="message" rows="4" class="form-input w-full px-4 py-3 rounded-xl text-white placeholder-spotix-gray/50 resize-none" placeholder="Tell us about your business, target neighborhoods, and what you're looking for..."></textarea>
                                 </div>
                                 
                                 <button type="submit" class="btn-gradient w-full py-4 rounded-xl text-white font-bold text-lg">
@@ -964,13 +1228,10 @@
                         </div>
                         <p class="text-spotix-gray mb-4 max-w-sm">Direct Mail Advertising to 10,000 Toronto Homes. Reach local customers with real mailboxes in neighborhoods you choose.</p>
                         <div class="flex space-x-4">
-                            <a href="#" class="w-10 h-10 rounded-full bg-spotix-darkgray/50 flex items-center justify-center text-spotix-gray hover:text-spotix-orange hover:bg-spotix-orange/10 transition-colors" aria-label="LinkedIn">
+                            <a href="https://linkedin.com" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-spotix-darkgray/50 flex items-center justify-center text-spotix-gray hover:text-spotix-orange hover:bg-spotix-orange/10 transition-colors" aria-label="LinkedIn">
                                 <i data-lucide="linkedin" class="w-5 h-5"></i>
                             </a>
-                            <a href="#" class="w-10 h-10 rounded-full bg-spotix-darkgray/50 flex items-center justify-center text-spotix-gray hover:text-spotix-orange hover:bg-spotix-orange/10 transition-colors" aria-label="Instagram">
-                                <i data-lucide="instagram" class="w-5 h-5"></i>
-                            </a>
-                            <a href="mailto:info@spotix.com" class="w-10 h-10 rounded-full bg-spotix-darkgray/50 flex items-center justify-center text-spotix-gray hover:text-spotix-orange hover:bg-spotix-orange/10 transition-colors" aria-label="Email">
+                            <a href="mailto:hello@myspotix.com" class="w-10 h-10 rounded-full bg-spotix-darkgray/50 flex items-center justify-center text-spotix-gray hover:text-spotix-orange hover:bg-spotix-orange/10 transition-colors" aria-label="Email">
                                 <i data-lucide="mail" class="w-5 h-5"></i>
                             </a>
                         </div>
@@ -981,9 +1242,11 @@
                         <h4 class="text-white font-semibold mb-4">Quick Links</h4>
                         <ul class="space-y-2">
                             <li><a href="#home" class="text-spotix-gray hover:text-spotix-orange transition-colors">Home</a></li>
-                            <li><a href="#services" class="text-spotix-gray hover:text-spotix-orange transition-colors">Services</a></li>
+                            <li><a href="#who-its-for" class="text-spotix-gray hover:text-spotix-orange transition-colors">Who It's For</a></li>
+                            <li><a href="#pricing" class="text-spotix-gray hover:text-spotix-orange transition-colors">Pricing</a></li>
                             <li><a href="#how-it-works" class="text-spotix-gray hover:text-spotix-orange transition-colors">How It Works</a></li>
-                            <li><a href="#features" class="text-spotix-gray hover:text-spotix-orange transition-colors">Features</a></li>
+                            <li><a href="#coverage" class="text-spotix-gray hover:text-spotix-orange transition-colors">Coverage</a></li>
+                            <li><a href="blog.html" class="text-spotix-gray hover:text-spotix-orange transition-colors">Blog</a></li>
                         </ul>
                     </div>
                     
@@ -992,19 +1255,29 @@
                         <h4 class="text-white font-semibold mb-4">Legal</h4>
                         <ul class="space-y-2">
                             <li><a href="privacy-policy.html" class="text-spotix-gray hover:text-spotix-orange transition-colors">Privacy Policy</a></li>
-                            <li><a href="terms-of-service.html" class="text-spotix-gray hover:text-spotix-orange transition-colors">Terms of Service</a></li>
-                            <li><a href="#testimonials" class="text-spotix-gray hover:text-spotix-orange transition-colors">Testimonials</a></li>
+                            <li><a href="terms-of-service.html" class="text-spotix-gray hover:text-spotix-orange transition-colors">Terms & Conditions</a></li>
                             <li><a href="#faq" class="text-spotix-gray hover:text-spotix-orange transition-colors">FAQ</a></li>
                         </ul>
                     </div>
                 </div>
                 
-                <div class="border-t border-spotix-gray/20 pt-8 text-center">
-                    <p class="text-spotix-gray text-sm">&copy; 2024 Spotix. All rights reserved.</p>
+                <div class="border-t border-spotix-gray/20 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                    <p class="text-spotix-gray text-sm">&copy; 2026 Spotix. All rights reserved.</p>
+                    <p class="text-spotix-gray text-sm">
+                        A <a href="https://gmacovei.com" target="_blank" rel="noopener" class="text-spotix-orange hover:underline">Gabriel Macovei</a> company
+                    </p>
+                    <p class="text-spotix-gray text-sm">hello@myspotix.com</p>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- Sticky Mobile CTA -->
+    <div id="sticky-cta" class="sticky-cta md:hidden glass border-t border-spotix-orange/30 p-4">
+        <a href="#contact" class="btn-gradient block w-full py-3 rounded-xl text-white font-bold text-center">
+            Book Your Spot
+        </a>
+    </div>
 
     <!-- External JavaScript -->
     <script src="js/main.js"></script>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why a Midtown Salon Switched from Instagram Ads to Direct Mail | Spotix Blog</title>
+    <meta name="description" content="Case study: A Midtown Toronto salon replaced Instagram ads with Spotix direct mail and saw lower cost per booking, higher retention, and marketing independence from algorithm changes.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        spotix: {
+                            black: '#0a0a0a', dark: '#111111', orange: '#F97316',
+                            orangeLight: '#FB923C', orangeDark: '#EA580C', amber: '#F59E0B',
+                            white: '#FFFFFF', gray: '#9CA3AF', darkgray: '#1a1a1a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="antialiased overflow-x-hidden bg-spotix-black">
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 glass">
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
+            <div class="flex items-center justify-between h-16 md:h-20">
+                <a href="../index.html" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-spotix-orange to-spotix-orangeDark flex items-center justify-center">
+                        <i data-lucide="mail" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <span class="text-xl font-bold text-white">Spotix</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html#home" class="nav-link text-white hover:text-spotix-orange transition-colors">Home</a>
+                    <a href="../blog.html" class="nav-link text-spotix-orange">Blog</a>
+                    <a href="../index.html#contact" class="btn-gradient px-6 py-2.5 rounded-full text-white font-semibold text-sm">Book Your Spot</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-white p-2" aria-label="Toggle menu">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden glass">
+            <div class="px-4 py-6 space-y-4">
+                <a href="../index.html#home" class="block text-white hover:text-spotix-orange py-2">Home</a>
+                <a href="../blog.html" class="block text-spotix-orange py-2">Blog</a>
+                <a href="../index.html#contact" class="block btn-gradient px-6 py-3 rounded-full text-white font-semibold text-center mt-4">Book Your Spot</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative pt-32 pb-8">
+        <div class="absolute inset-0 bg-gradient-to-b from-spotix-orange/10 via-transparent to-transparent"></div>
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12 relative">
+            <div class="max-w-3xl mx-auto">
+                <a href="../blog.html" class="inline-flex items-center gap-2 text-spotix-orange hover:text-spotix-orangeLight transition-colors mb-6">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                    <span>Back to Blog</span>
+                </a>
+                <div class="flex flex-wrap items-center gap-3 mb-4">
+                    <span class="blog-tag active text-xs">Case Study</span>
+                    <span class="text-spotix-gray text-sm">April 28, 2026</span>
+                </div>
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                    Why a Midtown Salon Switched from Instagram Ads to Direct Mail
+                </h1>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-spotix-orange to-spotix-orangeDark flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">GM</span>
+                    </div>
+                    <div>
+                        <p class="text-white font-medium">Gabriel Macovei</p>
+                        <p class="text-spotix-gray text-sm">Founder, Spotix</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 md:py-20">
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
+            <div class="max-w-3xl mx-auto">
+                <div class="prose prose-invert max-w-none">
+                    <p class="text-spotix-gray text-lg leading-relaxed mb-8">
+                        For three years, Glow Hair Studio in Midtown relied almost entirely on Instagram ads to fill appointment slots. It worked — until it didn't. Rising CPMs, iOS privacy changes, and algorithm shifts turned a reliable channel into a guessing game.
+                    </p>
+
+                    <h2 class="text-2xl font-bold text-white mt-10 mb-4">The Instagram Problem</h2>
+                    <p class="text-spotix-gray leading-relaxed mb-6">
+                        Owner Sarah Chen was spending $800-$1,200 per month on Instagram and Facebook ads. The leads came in, but the quality was dropping. "We were getting people from across the city who'd never become regulars," Sarah explained. "The cost per new client kept climbing, and retention was mediocre."
+                    </p>
+                    <p class="text-spotix-gray leading-relaxed mb-6">
+                        Worse, every platform update felt like a rug pull. One algorithm change in early 2025 cut her reach by 60% overnight. She had no control, no predictability, and no way to guarantee her ads reached people who could actually walk to her salon.
+                    </p>
+
+                    <h2 class="text-2xl font-bold text-white mt-10 mb-4">Enter Direct Mail</h2>
+                    <p class="text-spotix-gray leading-relaxed mb-6">
+                        Sarah heard about Spotix through another local business owner. Skeptical but curious, she booked a Solo Spot ($299) for a single neighborhood — the postal code directly surrounding her salon on Eglinton.
+                    </p>
+                    <p class="text-spotix-gray leading-relaxed mb-6">
+                        Her offer: "20% off your first cut + color. Walk-ins welcome, appointments preferred." We designed the postcard using her salon's branding, included a QR code linking to her online booking system, and printed a unique promo code on each card.
+                    </p>
+
+                    <h2 class="text-2xl font-bold text-white mt-10 mb-4">The Numbers</h2>
+                    <p class="text-spotix-gray leading-relaxed mb-6">
+                        After one mailing to 10,000 homes, Sarah tracked the following over 30 days:
+                    </p>
+                    <ul class="space-y-3 text-spotix-gray mb-8">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-5 h-5 text-spotix-orange flex-shrink-0 mt-0.5"></i>
+                            <span><strong class="text-white">62 first-time bookings</strong> via the unique promo code</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-5 h-5 text-spotix-orange flex-shrink-0 mt-0.5"></i>
+                            <span><strong class="text-white">28 became repeat clients</strong> within 90 days</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-5 h-5 text-spotix-orange flex-shrink-0 mt-0.5"></i>
+                            <span><strong class="text-white">$4.82 cost per new client</strong> — vs. $34 average on Instagram</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-5 h-5 text-spotix-orange flex-shrink-0 mt-0.5"></i>
+                            <span><strong class="text-white">Zero algorithm risk</strong> — the mail doesn't depend on Meta's mood</span>
+                        </li>
+                    </ul>
+
+                    <h2 class="text-2xl font-bold text-white mt-10 mb-4">The Hidden Benefit: Retention</h2>
+                    <p class="text-spotix-gray leading-relaxed mb-6">
+                        The most surprising result wasn't the first-month bookings — it was who those clients turned out to be. Neighborhood locals who discovered the salon through mail were far more likely to rebook than drive-in clients from Instagram. Proximity matters for salons. When your clients live nearby, cancelations drop and frequency rises.
+                    </p>
+                    <p class="text-spotix-gray leading-relaxed mb-6">
+                        "The postcard clients are my regulars now," Sarah said. "The Instagram people would come once with a discount and disappear. These people walk past my salon every day."
+                    </p>
+
+                    <h2 class="text-2xl font-bold text-white mt-10 mb-4">The Switch</h2>
+                    <p class="text-spotix-gray leading-relaxed mb-6">
+                        Sarah didn't abandon digital entirely — she reallocated. She cut her Instagram budget by 70% and now runs Spotix as her primary acquisition channel, with a small retargeting budget for people who scanned the QR code but didn't book.
+                    </p>
+                    <p class="text-spotix-gray leading-relaxed mb-6">
+                        She's now on a 3-month Full Spot subscription with QR and phone tracking. Total monthly marketing spend is down. Client quality is up. And for the first time in years, her growth plan doesn't depend on hoping the algorithm favors her.
+                    </p>
+
+                    <div class="bg-spotix-darkgray/50 rounded-2xl p-8 border border-spotix-orange/30 mt-10">
+                        <h3 class="text-xl font-bold text-white mb-3">Tired of algorithm roulette?</h3>
+                        <p class="text-spotix-gray mb-6">Book your spot on next month's postcard. Target the neighborhood around your business with guaranteed delivery to 10,000 homes.</p>
+                        <a href="../index.html#contact" class="btn-gradient inline-block px-8 py-3 rounded-xl text-white font-semibold">
+                            Book Your Spot
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-spotix-gray/20">
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                    <div class="md:col-span-2">
+                        <div class="flex items-center space-x-2 mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-spotix-orange to-spotix-orangeDark flex items-center justify-center">
+                                <i data-lucide="mail" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <span class="text-xl font-bold text-white">Spotix</span>
+                        </div>
+                        <p class="text-spotix-gray mb-4 max-w-sm">Direct Mail Advertising to 10,000 Toronto Homes.</p>
+                        <div class="flex space-x-4">
+                            <a href="https://linkedin.com" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-spotix-darkgray/50 flex items-center justify-center text-spotix-gray hover:text-spotix-orange transition-colors" aria-label="LinkedIn">
+                                <i data-lucide="linkedin" class="w-5 h-5"></i>
+                            </a>
+                            <a href="mailto:hello@myspotix.com" class="w-10 h-10 rounded-full bg-spotix-darkgray/50 flex items-center justify-center text-spotix-gray hover:text-spotix-orange transition-colors" aria-label="Email">
+                                <i data-lucide="mail" class="w-5 h-5"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-semibold mb-4">Quick Links</h4>
+                        <ul class="space-y-2">
+                            <li><a href="../index.html" class="text-spotix-gray hover:text-spotix-orange transition-colors">Home</a></li>
+                            <li><a href="../blog.html" class="text-spotix-orange">Blog</a></li>
+                            <li><a href="../index.html#contact" class="text-spotix-gray hover:text-spotix-orange transition-colors">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-semibold mb-4">Legal</h4>
+                        <ul class="space-y-2">
+                            <li><a href="../privacy-policy.html" class="text-spotix-gray hover:text-spotix-orange transition-colors">Privacy Policy</a></li>
+                            <li><a href="../terms-of-service.html" class="text-spotix-gray hover:text-spotix-orange transition-colors">Terms & Conditions</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="border-t border-spotix-gray/20 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                    <p class="text-spotix-gray text-sm">&copy; 2026 Spotix. All rights reserved.</p>
+                    <p class="text-spotix-gray text-sm">A <a href="https://gmacovei.com" target="_blank" rel="noopener" class="text-spotix-orange hover:underline">Gabriel Macovei</a> company</p>
+                    <p class="text-spotix-gray text-sm">hello@myspotix.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

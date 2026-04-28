@@ -80,6 +80,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // Sticky CTA for mobile
+    const stickyCta = document.getElementById('sticky-cta');
+    if (stickyCta) {
+        let ctaVisible = false;
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > window.innerHeight * 0.5) {
+                if (!ctaVisible) {
+                    stickyCta.classList.add('visible');
+                    ctaVisible = true;
+                }
+            } else {
+                if (ctaVisible) {
+                    stickyCta.classList.remove('visible');
+                    ctaVisible = false;
+                }
+            }
+        });
+    }
+    
     // Intersection Observer for Scroll Animations
     const observerOptions = {
         threshold: 0.1,

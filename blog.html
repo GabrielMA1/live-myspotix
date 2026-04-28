@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Spotix — Toronto Direct Mail Advertising Insights</title>
+    <meta name="description" content="Case studies, insights, and practical guides on direct mail advertising for Toronto local businesses. Learn what works from real campaigns.">
+    <meta name="keywords" content="Toronto direct mail, local advertising Toronto, postcard marketing GTA, neighborhood advertising Toronto, direct mail case study">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        spotix: {
+                            black: '#0a0a0a',
+                            dark: '#111111',
+                            orange: '#F97316',
+                            orangeLight: '#FB923C',
+                            orangeDark: '#EA580C',
+                            amber: '#F59E0B',
+                            white: '#FFFFFF',
+                            gray: '#9CA3AF',
+                            darkgray: '#1a1a1a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="antialiased overflow-x-hidden bg-spotix-black">
+    
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 glass">
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
+            <div class="flex items-center justify-between h-16 md:h-20">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-spotix-orange to-spotix-orangeDark flex items-center justify-center">
+                        <i data-lucide="mail" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <span class="text-xl font-bold text-white">Spotix</span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html#home" class="nav-link text-white hover:text-spotix-orange transition-colors">Home</a>
+                    <a href="index.html#who-its-for" class="nav-link text-white hover:text-spotix-orange transition-colors">Who It's For</a>
+                    <a href="index.html#pricing" class="nav-link text-white hover:text-spotix-orange transition-colors">Pricing</a>
+                    <a href="index.html#how-it-works" class="nav-link text-white hover:text-spotix-orange transition-colors">How It Works</a>
+                    <a href="blog.html" class="nav-link text-spotix-orange">Blog</a>
+                    <a href="index.html#contact" class="btn-gradient px-6 py-2.5 rounded-full text-white font-semibold text-sm">Book Your Spot</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white p-2" aria-label="Toggle menu">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass">
+            <div class="px-4 py-6 space-y-4">
+                <a href="index.html#home" class="block text-white hover:text-spotix-orange py-2">Home</a>
+                <a href="index.html#who-its-for" class="block text-white hover:text-spotix-orange py-2">Who It's For</a>
+                <a href="index.html#pricing" class="block text-white hover:text-spotix-orange py-2">Pricing</a>
+                <a href="index.html#how-it-works" class="block text-white hover:text-spotix-orange py-2">How It Works</a>
+                <a href="blog.html" class="block text-spotix-orange py-2">Blog</a>
+                <a href="index.html#contact" class="block btn-gradient px-6 py-3 rounded-full text-white font-semibold text-center mt-4">Book Your Spot</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-16">
+        <div class="absolute inset-0 bg-gradient-to-b from-spotix-orange/10 via-transparent to-transparent"></div>
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12 relative">
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+                    <span class="gradient-text">Blog</span>
+                </h1>
+                <p class="text-spotix-gray text-lg max-w-2xl mx-auto">
+                    Case studies and practical insights on direct mail advertising for Toronto local businesses.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Filter / Search -->
+    <section class="pb-8">
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
+            <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div class="flex flex-wrap gap-2">
+                    <button class="blog-tag active" data-filter="all">All</button>
+                    <button class="blog-tag" data-filter="case-study">Case Studies</button>
+                    <button class="blog-tag" data-filter="strategy">Strategy</button>
+                    <button class="blog-tag" data-filter="industry">Industry</button>
+                </div>
+                <div class="relative w-full sm:w-auto">
+                    <i data-lucide="search" class="w-4 h-4 text-spotix-gray absolute left-3 top-1/2 -translate-y-1/2"></i>
+                    <input type="text" id="blog-search" placeholder="Search articles..." class="form-input w-full sm:w-64 pl-10 pr-4 py-2 rounded-lg text-white placeholder-spotix-gray/50 text-sm">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Posts Grid -->
+    <section class="py-12 md:py-20">
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
+            <div class="max-w-4xl mx-auto grid grid-cols-1 gap-8" id="blog-grid">
+                
+                <!-- Post 1 -->
+                <article class="blog-card bg-spotix-darkgray/50 rounded-2xl border border-spotix-gray/20 overflow-hidden" data-category="case-study" data-title="How a Toronto Restaurant Filled 40% More Tables with One Postcard">
+                    <a href="blog/restaurant-postcard-case-study.html" class="block">
+                        <div class="p-8 md:p-10">
+                            <div class="flex flex-wrap items-center gap-3 mb-4">
+                                <span class="blog-tag active text-xs">Case Study</span>
+                                <span class="text-spotix-gray text-sm">April 28, 2026</span>
+                            </div>
+                            <h2 class="text-2xl md:text-3xl font-bold text-white mb-3 hover:text-spotix-orange transition-colors">
+                                How a Toronto Restaurant Filled 40% More Tables with One Postcard
+                            </h2>
+                            <p class="text-spotix-gray leading-relaxed mb-6">
+                                A family-run Italian restaurant in Midtown partnered with Spotix to reach 10,000 nearby homes. Within three weeks, they saw a 40% increase in weeknight reservations — and the owner knows exactly which offer drove the traffic.
+                            </p>
+                            <div class="flex items-center gap-2 text-spotix-orange font-medium">
+                                <span>Read More</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+                
+                <!-- Post 2 -->
+                <article class="blog-card bg-spotix-darkgray/50 rounded-2xl border border-spotix-gray/20 overflow-hidden" data-category="case-study" data-title="Why a Midtown Salon Switched from Instagram Ads to Direct Mail">
+                    <a href="blog/salon-instagram-to-direct-mail.html" class="block">
+                        <div class="p-8 md:p-10">
+                            <div class="flex flex-wrap items-center gap-3 mb-4">
+                                <span class="blog-tag active text-xs">Case Study</span>
+                                <span class="text-spotix-gray text-sm">April 28, 2026</span>
+                            </div>
+                            <h2 class="text-2xl md:text-3xl font-bold text-white mb-3 hover:text-spotix-orange transition-colors">
+                                Why a Midtown Salon Switched from Instagram Ads to Direct Mail
+                            </h2>
+                            <p class="text-spotix-gray leading-relaxed mb-6">
+                                After spending $800/month on Instagram ads with declining returns, a boutique salon tried Spotix. The result: lower cost per booking, higher client lifetime value, and a marketing channel that doesn't depend on algorithm changes.
+                            </p>
+                            <div class="flex items-center gap-2 text-spotix-orange font-medium">
+                                <span>Read More</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+                
+                <!-- Post 3 -->
+                <article class="blog-card bg-spotix-darkgray/50 rounded-2xl border border-spotix-gray/20 overflow-hidden" data-category="strategy" data-title="The Real Cost of Digital Ads vs. Direct Mail for Toronto Home Services">
+                    <a href="blog/home-services-cost-comparison.html" class="block">
+                        <div class="p-8 md:p-10">
+                            <div class="flex flex-wrap items-center gap-3 mb-4">
+                                <span class="blog-tag active text-xs" style="background:rgba(59,130,246,0.1);color:#60A5FA;border-color:rgba(59,130,246,0.3);">Strategy</span>
+                                <span class="text-spotix-gray text-sm">April 28, 2026</span>
+                            </div>
+                            <h2 class="text-2xl md:text-3xl font-bold text-white mb-3 hover:text-spotix-orange transition-colors">
+                                The Real Cost of Digital Ads vs. Direct Mail for Toronto Home Services
+                            </h2>
+                            <p class="text-spotix-gray leading-relaxed mb-6">
+                                We broke down the true costs for a typical Toronto home services business: Google Ads CPC, Facebook CPM, and Spotix fixed pricing. The numbers reveal why more contractors are adding postcards to their marketing mix.
+                            </p>
+                            <div class="flex items-center gap-2 text-spotix-orange font-medium">
+                                <span>Read More</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+                
+            </div>
+            
+            <!-- No results state -->
+            <div id="no-results" class="hidden text-center py-16">
+                <i data-lucide="file-x" class="w-12 h-12 text-spotix-gray mx-auto mb-4"></i>
+                <p class="text-spotix-gray text-lg">No articles found matching your search.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-spotix-gray/20">
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                    <!-- Company Info -->
+                    <div class="md:col-span-2">
+                        <div class="flex items-center space-x-2 mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-spotix-orange to-spotix-orangeDark flex items-center justify-center">
+                                <i data-lucide="mail" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <span class="text-xl font-bold text-white">Spotix</span>
+                        </div>
+                        <p class="text-spotix-gray mb-4 max-w-sm">Direct Mail Advertising to 10,000 Toronto Homes. Reach local customers with real mailboxes in neighborhoods you choose.</p>
+                        <div class="flex space-x-4">
+                            <a href="https://linkedin.com" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-spotix-darkgray/50 flex items-center justify-center text-spotix-gray hover:text-spotix-orange hover:bg-spotix-orange/10 transition-colors" aria-label="LinkedIn">
+                                <i data-lucide="linkedin" class="w-5 h-5"></i>
+                            </a>
+                            <a href="mailto:hello@myspotix.com" class="w-10 h-10 rounded-full bg-spotix-darkgray/50 flex items-center justify-center text-spotix-gray hover:text-spotix-orange hover:bg-spotix-orange/10 transition-colors" aria-label="Email">
+                                <i data-lucide="mail" class="w-5 h-5"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Links -->
+                    <div>
+                        <h4 class="text-white font-semibold mb-4">Quick Links</h4>
+                        <ul class="space-y-2">
+                            <li><a href="index.html#home" class="text-spotix-gray hover:text-spotix-orange transition-colors">Home</a></li>
+                            <li><a href="index.html#who-its-for" class="text-spotix-gray hover:text-spotix-orange transition-colors">Who It's For</a></li>
+                            <li><a href="index.html#pricing" class="text-spotix-gray hover:text-spotix-orange transition-colors">Pricing</a></li>
+                            <li><a href="index.html#how-it-works" class="text-spotix-gray hover:text-spotix-orange transition-colors">How It Works</a></li>
+                            <li><a href="blog.html" class="text-spotix-orange">Blog</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Legal Links -->
+                    <div>
+                        <h4 class="text-white font-semibold mb-4">Legal</h4>
+                        <ul class="space-y-2">
+                            <li><a href="privacy-policy.html" class="text-spotix-gray hover:text-spotix-orange transition-colors">Privacy Policy</a></li>
+                            <li><a href="terms-of-service.html" class="text-spotix-gray hover:text-spotix-orange transition-colors">Terms & Conditions</a></li>
+                            <li><a href="index.html#faq" class="text-spotix-gray hover:text-spotix-orange transition-colors">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="border-t border-spotix-gray/20 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                    <p class="text-spotix-gray text-sm">&copy; 2026 Spotix. All rights reserved.</p>
+                    <p class="text-spotix-gray text-sm">
+                        A <a href="https://gmacovei.com" target="_blank" rel="noopener" class="text-spotix-orange hover:underline">Gabriel Macovei</a> company
+                    </p>
+                    <p class="text-spotix-gray text-sm">hello@myspotix.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- External JavaScript -->
+    <script src="js/main.js"></script>
+    <script>
+        // Blog filtering
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.blog-tag[data-filter]');
+            const posts = document.querySelectorAll('#blog-grid article');
+            const noResults = document.getElementById('no-results');
+            const searchInput = document.getElementById('blog-search');
+            let currentFilter = 'all';
+            let currentSearch = '';
+
+            function filterPosts() {
+                let visibleCount = 0;
+                posts.forEach(post => {
+                    const category = post.dataset.category;
+                    const title = post.dataset.title.toLowerCase();
+                    const matchesFilter = currentFilter === 'all' || category === currentFilter;
+                    const matchesSearch = title.includes(currentSearch);
+                    
+                    if (matchesFilter && matchesSearch) {
+                        post.style.display = '';
+                        visibleCount++;
+                    } else {
+                        post.style.display = 'none';
+                    }
+                });
+                
+                if (visibleCount === 0) {
+                    noResults.classList.remove('hidden');
+                } else {
+                    noResults.classList.add('hidden');
+                }
+            }
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentFilter = btn.dataset.filter;
+                    filterPosts();
+                });
+            });
+
+            searchInput.addEventListener('input', (e) => {
+                currentSearch = e.target.value.toLowerCase();
+                filterPosts();
+            });
+        });
+    </script>
+</body>
+</html>
