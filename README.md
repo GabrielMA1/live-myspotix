@@ -1,97 +1,73 @@
-# Spotix - Direct Mail Advertising Website
+# React + TypeScript + Vite
 
-A modern, responsive website for Spotix - a direct mail advertising service that helps businesses reach 10,000 Toronto homes with postcards.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Features
+Currently, two official plugins are available:
 
-- **Modern Dark Theme** with electric blue/cyan accent colors
-- **3D Abstract Hero Visual** with floating envelopes and postcards
-- **Responsive Design** - works on all devices
-- **Smooth Animations** and scroll effects
-- **Contact Form** integrated with Formspree
-- **FAQ Accordion** section
-- **Testimonials** from satisfied clients
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## File Structure
+## React Compiler
 
-```
-spotix/
-├── index.html          # Main HTML file
-├── css/
-│   └── styles.css      # External stylesheet
-├── js/
-│   └── main.js         # JavaScript functionality
-├── assets/             # Images and other assets (if needed)
-└── README.md           # This file
-```
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## GitHub Pages Deployment
+## Expanding the ESLint configuration
 
-### Method 1: Upload to GitHub Repository
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-1. Create a new repository on GitHub
-2. Upload all files from this folder to the repository
-3. Go to **Settings** > **Pages**
-4. Under "Source", select "Deploy from a branch"
-5. Select "main" branch and "/ (root)" folder
-6. Click **Save**
-7. Your site will be live at `https://yourusername.github.io/repository-name/`
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-### Method 2: Git Command Line
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
-```bash
-# Initialize git repository
-git init
-
-# Add all files
-git add .
-
-# Commit
-git commit -m "Initial commit"
-
-# Add remote repository
-git remote add origin https://github.com/yourusername/spotix.git
-
-# Push to GitHub
-git push -u origin main
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
 
-Then enable GitHub Pages in repository settings.
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-## Custom Domain (Optional)
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-To use a custom domain:
-
-1. Add a `CNAME` file with your domain name
-2. Configure DNS settings with your domain provider
-3. Update GitHub Pages settings with your custom domain
-
-## Form Configuration
-
-The contact form is configured to use Formspree. To use your own form:
-
-1. Create an account at [Formspree](https://formspree.io)
-2. Create a new form
-3. Replace the form action URL in `index.html`:
-   ```html
-   <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-   ```
-
-## Color Palette
-
-- **Background**: Pure Black (#000000)
-- **Primary Accent**: Electric Blue/Cyan (#00D9FF to #0099FF)
-- **Secondary**: Deep Blue (#0066CC)
-- **Text**: White (#FFFFFF)
-- **Subtle Text**: Gray (#888888)
-
-## Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-
-## License
-
-© 2024 Spotix. All rights reserved.
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
