@@ -1,0 +1,275 @@
+/* Spotix - Direct Mail Advertising Website Styles */
+/* Orange Color Palette */
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #0a0a0a;
+    color: #FFFFFF;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Glassmorphism */
+.glass {
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(249, 115, 22, 0.1);
+}
+
+/* Gradient Text */
+.gradient-text {
+    background: linear-gradient(135deg, #F97316 0%, #FB923C 50%, #F59E0B 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Glow Effects */
+.glow-orange {
+    box-shadow: 0 0 30px rgba(249, 115, 22, 0.25), 0 0 60px rgba(249, 115, 22, 0.15);
+}
+
+.glow-text {
+    text-shadow: 0 0 20px rgba(249, 115, 22, 0.4), 0 0 40px rgba(249, 115, 22, 0.2);
+}
+
+/* Card Hover Effects */
+.card-hover {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(249, 115, 22, 0.12), 0 0 30px rgba(249, 115, 22, 0.08);
+}
+
+/* 3D Abstract Shapes */
+.shape-3d {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.envelope-shape {
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.9) 0%, rgba(251, 146, 60, 0.85) 50%, rgba(234, 88, 12, 0.9) 100%);
+    border: 1px solid rgba(249, 115, 22, 0.5);
+    box-shadow: 
+        0 0 25px rgba(249, 115, 22, 0.4),
+        0 0 50px rgba(249, 115, 22, 0.2),
+        inset 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.postcard-shape {
+    background: linear-gradient(145deg, rgba(249, 115, 22, 0.85) 0%, rgba(234, 88, 12, 0.9) 100%);
+    border: 1px solid rgba(249, 115, 22, 0.4);
+    box-shadow: 
+        0 0 20px rgba(249, 115, 22, 0.35),
+        0 0 40px rgba(249, 115, 22, 0.15),
+        inset 0 0 10px rgba(255, 255, 255, 0.08);
+}
+
+/* Accordion */
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease;
+}
+
+.accordion-content.active {
+    max-height: 500px;
+}
+
+/* Form Inputs */
+.form-input {
+    background: rgba(26, 26, 26, 0.8);
+    border: 1px solid rgba(156, 163, 175, 0.3);
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #F97316;
+    box-shadow: 0 0 15px rgba(249, 115, 22, 0.2);
+}
+
+/* Button Gradient */
+.btn-gradient {
+    background: linear-gradient(135deg, #F97316 0%, #EA580C 100%);
+    transition: all 0.3s ease;
+}
+
+.btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(249, 115, 22, 0.4), 0 0 20px rgba(234, 88, 12, 0.3);
+}
+
+/* Navigation Link Hover */
+.nav-link {
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #F97316, #FB923C);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #F97316, #EA580C);
+    border-radius: 4px;
+}
+
+/* Animations */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        opacity: 0.7;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.08);
+    }
+}
+
+@keyframes fly {
+    0%, 100% {
+        transform: translateX(0) translateY(0) rotate(0deg);
+    }
+    25% {
+        transform: translateX(10px) translateY(-5px) rotate(2deg);
+    }
+    50% {
+        transform: translateX(0) translateY(-10px) rotate(0deg);
+    }
+    75% {
+        transform: translateX(-10px) translateY(-5px) rotate(-2deg);
+    }
+}
+
+@keyframes home-pulse {
+    0%, 100% { 
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(249, 115, 22, 0.3);
+    }
+    50% { 
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(249, 115, 22, 0.6);
+    }
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+    animation: float 6s ease-in-out 2s infinite;
+}
+
+.animate-float-slow {
+    animation: float 8s ease-in-out 1s infinite;
+}
+
+.animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-fly {
+    animation: fly 4s ease-in-out infinite;
+}
+
+.animate-fly-delayed {
+    animation: fly 4s ease-in-out 1.3s infinite;
+}
+
+.animate-fly-slow {
+    animation: fly 5s ease-in-out 2.6s infinite;
+}
+
+.home-pulse {
+    animation: home-pulse 2s ease-in-out infinite;
+}
+
+/* Particle Animation */
+.particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #F97316;
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: particle-float 12s infinite;
+}
+
+@keyframes particle-float {
+    0%, 100% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.5;
+    }
+    90% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(-100vh) translateX(30px);
+        opacity: 0;
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .timeline-connector::before {
+        display: none;
+    }
+}
+
+/* Selection Color */
+::selection {
+    background: rgba(249, 115, 22, 0.3);
+    color: #FFFFFF;
+}
+
+/* Focus Visible */
+:focus-visible {
+    outline: 2px solid #F97316;
+    outline-offset: 2px;
+}
