@@ -123,13 +123,18 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
     
-    // Form Validation Enhancement
-    const contactForm = document.querySelector('form[action*="formspree"]');
+// Contact Form — AJAX submit with thank-you state
+    const contactForm = document.getElementById('spotix-contact-form');
+    const submitBtn = document.getElementById('spotix-submit-btn');
+    const successMsg = document.getElementById('spotix-form-success');
+
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Validate required fields
             const requiredFields = contactForm.querySelectorAll('[required]');
             let isValid = true;
-            
             requiredFields.forEach(field => {
                 if (!field.value.trim()) {
                     isValid = false;
@@ -138,13 +143,33 @@ document.addEventListener('DOMContentLoaded', function() {
                     field.style.borderColor = '';
                 }
             });
-            
-            if (!isValid) {
-                e.preventDefault();
-                alert('Please fill in all required fields.');
-            }
+            if (!isValid) return;
+
+            // Loading state
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = 'Sending...';
+            submitBtn.disabled = true;
+
+            fetch(contactForm.action, {
+                method: 'POST',
+                body: new FormData(contactForm),
+                headers: { 'Accept': 'application/json' }
+            })
+            .then(response => {
+                if (response.ok) {
+                    contactForm.classList.add('hidden');
+                    if (successMsg) successMsg.classList.remove('hidden');
+                } else {
+                    throw new Error('Submission failed');
+                }
+            })
+            .catch(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                alert('Something went wrong. Please try again or email us at hello@myspotix.com');
+            });
         });
-        
+
         // Clear error styling on input
         contactForm.querySelectorAll('input, textarea, select').forEach(field => {
             field.addEventListener('input', function() {
