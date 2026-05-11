@@ -25,7 +25,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (mobileMenuBtn && mobileMenu) {
         mobileMenuBtn.addEventListener('click', () => {
+            const isExpanded = !mobileMenu.classList.contains('hidden');
             mobileMenu.classList.toggle('hidden');
+            mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
         });
         
         // Close mobile menu when clicking a link
@@ -114,13 +116,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
     
-    // Observe elements for animation
+    // Observe elements for animation (skip elements already in viewport on load)
     const animatedElements = document.querySelectorAll('.card-hover, .accordion-btn');
     animatedElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
+        const rect = el.getBoundingClientRect();
+        const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+        
+        if (!isInViewport) {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        }
     });
     
 // Contact Form — AJAX submit with thank-you state
@@ -159,6 +166,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (response.ok) {
                     contactForm.classList.add('hidden');
                     if (successMsg) successMsg.classList.remove('hidden');
+                    // Track conversion
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'conversion', {
+                            'send_to': 'G-XXXXXXXXXX/CONVERSION_LABEL',
+                            'value': 1.0,
+                            'currency': 'CAD'
+                        });
+                        gtag('event', 'generate_lead', {
+                            'currency': 'CAD',
+                            'value': 1.0
+                        });
+                    }
                 } else {
                     throw new Error('Submission failed');
                 }
