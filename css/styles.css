@@ -286,12 +286,12 @@ select.form-input {
 .timeline-step::before {
     content: '';
     position: absolute;
-    top: 28px;
+    top: 60px;
     left: 50%;
-    width: calc(100% - 56px);
+    width: calc(100% - 80px);
     height: 2px;
     background: linear-gradient(90deg, #F97316, #EA580C);
-    transform: translateX(calc(-50% + 28px));
+    transform: translateX(calc(-50% + 40px));
     z-index: 0;
 }
 
